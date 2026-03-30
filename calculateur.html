@@ -1,1 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur de Crédit Gratuit — FinanceIQ</title>
+  <meta name="description" content="Calculez vos mensualités de crédit immobilier ou consommation en quelques secondes. Tableau d'amortissement complet, gratuit et sans inscription.">
+  <meta name="keywords" content="calculateur crédit, mensualités crédit immobilier, simulation prêt, taux intérêt, tableau amortissement">
 
+  <!-- AdSense — remplace ton ID ici -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0f1e;
+      --surface: #111827;
+      --card: #161f35;
+      --accent: #00e5a0;
+      --accent2: #4f8eff;
+      --danger: #ff6b6b;
+      --text: #f0f4ff;
+      --muted: #7a8aaa;
+      --border: rgba(255,255,255,0.07);
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:var(--font-body); font-size:16px; line-height:1.6; overflow-x:hidden; }
+
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 40px;
+      background:rgba(10,15,30,0.85); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    .logo { font-family:var(--font-head); font-size:22px; font-weight:800; color:var(--accent); letter-spacing:-0.5px; text-decoration:none; }
+    .logo span { color:var(--text); }
+    .nav-links { display:flex; gap:32px; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:14px; font-weight:500; transition:color .2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+    @media(max-width:600px) { nav { padding:16px 20px; } .nav-links { display:none; } }
+
+    /* HERO */
+    .page-hero {
+      padding: 120px 20px 60px;
+      text-align:center;
+      position:relative;
+    }
+    .page-hero::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(79,142,255,0.09) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(79,142,255,0.1); border:1px solid rgba(79,142,255,0.25);
+      border-radius:50px; padding:6px 16px; font-size:13px; color:var(--accent2);
+      margin-bottom:24px;
+    }
+    h1 { font-family:var(--font-head); font-size:clamp(36px,6vw,64px); font-weight:800; letter-spacing:-1.5px; margin-bottom:16px; }
+    h1 em { font-style:normal; color:var(--accent2); }
+    .hero-sub { color:var(--muted); font-size:18px; max-width:520px; margin:0 auto; }
+
+    /* MAIN LAYOUT */
+    .main { max-width:1100px; margin:0 auto; padding:48px 20px 80px; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+    @media(max-width:760px) { .grid { grid-template-columns:1fr; } }
+
+    /* TABS */
+    .tabs { display:flex; gap:0; margin-bottom:28px; border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+    .tab {
+      flex:1; padding:14px; text-align:center; background:transparent;
+      border:none; color:var(--muted); font-family:var(--font-body); font-size:15px;
+      font-weight:500; cursor:pointer; transition:all .25s;
+    }
+    .tab.active { background:var(--accent2); color:#fff; font-weight:700; }
+    .tab:not(.active):hover { background:rgba(255,255,255,0.04); color:var(--text); }
+
+    /* CARD */
+    .card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:20px; padding:36px;
+    }
+    .card h2 { font-family:var(--font-head); font-size:20px; font-weight:700; margin-bottom:28px; }
+
+    /* FORM */
+    .form-group { margin-bottom:22px; }
+    .form-group label { display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--muted); margin-bottom:10px; font-weight:500; }
+    .form-group label span { font-size:14px; color:var(--text); font-weight:700; }
+    input[type="range"] {
+      width:100%; -webkit-appearance:none; appearance:none;
+      height:4px; border-radius:2px; background:var(--border); outline:none; cursor:pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance:none; width:20px; height:20px; border-radius:50%;
+      background:var(--accent2); border:3px solid var(--bg); cursor:pointer;
+      box-shadow:0 0 0 2px var(--accent2);
+    }
+    .range-limits { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:6px; }
+
+    .input-field {
+      width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border);
+      border-radius:10px; padding:12px 16px; color:var(--text); font-size:16px;
+      font-family:var(--font-body); outline:none; transition:border-color .2s;
+    }
+    .input-field:focus { border-color:rgba(79,142,255,0.5); }
+
+    /* RESULTS */
+    .result-hero {
+      background:linear-gradient(135deg, rgba(79,142,255,0.15), rgba(0,229,160,0.08));
+      border:1px solid rgba(79,142,255,0.2);
+      border-radius:16px; padding:28px; text-align:center; margin-bottom:20px;
+    }
+    .mensualite-label { font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:2px; margin-bottom:8px; }
+    .mensualite-val { font-family:var(--font-head); font-size:52px; font-weight:800; color:var(--accent2); line-height:1; }
+    .mensualite-unit { font-size:20px; color:var(--muted); font-weight:400; }
+
+    .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+    .stat-box {
+      background:var(--bg); border:1px solid var(--border);
+      border-radius:12px; padding:16px; text-align:center;
+    }
+    .stat-box .s-val { font-family:var(--font-head); font-size:20px; font-weight:700; }
+    .stat-box .s-lab { font-size:12px; color:var(--muted); margin-top:4px; }
+    .s-val.green { color:var(--accent); }
+    .s-val.red { color:var(--danger); }
+    .s-val.blue { color:var(--accent2); }
+
+    /* DONUT */
+    .donut-wrap { display:flex; align-items:center; gap:24px; margin-bottom:20px; }
+    canvas#donut { flex-shrink:0; }
+    .donut-legend { flex:1; }
+    .legend-item { display:flex; align-items:center; gap:10px; margin-bottom:10px; font-size:14px; }
+    .legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+    /* CONSEIL */
+    .conseil-box {
+      background:rgba(0,229,160,0.07); border-left:3px solid var(--accent);
+      border-radius:0 10px 10px 0; padding:16px 20px; font-size:14px;
+      color:var(--muted); line-height:1.6;
+    }
+    .conseil-box strong { color:var(--text); }
+
+    /* TAUX RECAP */
+    .taux-recap { display:flex; gap:12px; margin-bottom:28px; flex-wrap:wrap; }
+    .taux-badge {
+      background:rgba(255,255,255,0.04); border:1px solid var(--border);
+      border-radius:50px; padding:8px 16px; font-size:13px; cursor:pointer;
+      transition:all .2s; color:var(--muted);
+    }
+    .taux-badge:hover { border-color:rgba(79,142,255,0.4); color:var(--accent2); }
+
+    /* AMORTISSEMENT TABLE */
+    .amort-section { margin-top:48px; }
+    .amort-section h2 { font-family:var(--font-head); font-size:24px; font-weight:700; margin-bottom:8px; }
+    .amort-section p { color:var(--muted); font-size:14px; margin-bottom:24px; }
+    .table-wrap { overflow-x:auto; border-radius:16px; border:1px solid var(--border); }
+    table { width:100%; border-collapse:collapse; font-size:14px; }
+    thead { background:var(--surface); }
+    th { padding:14px 16px; text-align:right; color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:1px; font-weight:600; }
+    th:first-child { text-align:center; }
+    td { padding:13px 16px; text-align:right; border-top:1px solid var(--border); transition:background .15s; }
+    td:first-child { text-align:center; color:var(--muted); font-size:13px; }
+    tr:hover td { background:rgba(255,255,255,0.02); }
+    .td-principal { color:var(--accent2); font-weight:500; }
+    .td-interets { color:var(--danger); }
+    .td-restant { color:var(--muted); }
+    .td-mensualite { font-weight:700; }
+    .show-more-btn {
+      width:100%; padding:16px; background:rgba(255,255,255,0.02);
+      border:none; border-top:1px solid var(--border); color:var(--muted);
+      font-family:var(--font-body); font-size:14px; cursor:pointer; transition:color .2s;
+    }
+    .show-more-btn:hover { color:var(--accent2); }
+
+    /* AD */
+    .ad-block {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:12px; padding:16px; text-align:center; margin:32px 0;
+    }
+    .ad-inner { min-height:90px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.02); border-radius:8px; }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:40px 20px; text-align:center; color:var(--muted); font-size:13px; }
+    .footer-links { display:flex; gap:24px; justify-content:center; margin-bottom:12px; flex-wrap:wrap; }
+    .footer-links a { color:var(--muted); text-decoration:none; }
+    .footer-links a:hover { color:var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Finance<span>IQ</span></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#quiz">Quiz</a>
+    <a href="calculateur.html" class="active">Crédit</a>
+    <a href="index.html#budget">Budget</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-badge">🏦 Outil 100% gratuit · Résultat instantané</div>
+  <h1>Calculateur de <em>crédit</em></h1>
+  <p class="hero-sub">Simulez vos mensualités de prêt immobilier ou à la consommation. Tableau d'amortissement complet inclus.</p>
+</div>
+
+<div class="main">
+
+  <!-- TABS TYPE DE CRÉDIT -->
+  <div class="tabs">
+    <button class="tab active" onclick="setType('immo', this)">🏠 Immobilier</button>
+    <button class="tab" onclick="setType('conso', this)">🛒 Consommation</button>
+    <button class="tab" onclick="setType('auto', this)">🚗 Auto</button>
+  </div>
+
+  <!-- TAUX RAPIDES -->
+  <div style="margin-bottom:8px; font-size:13px; color:var(--muted);">Taux du marché actuels (indicatifs) :</div>
+  <div class="taux-recap" id="taux-rapides"></div>
+
+  <!-- GRILLE PRINCIPALE -->
+  <div class="grid">
+
+    <!-- FORMULAIRE -->
+    <div class="card">
+      <h2>Paramètres du prêt</h2>
+
+      <div class="form-group">
+        <label>Montant emprunté <span id="lbl-montant">200 000 €</span></label>
+        <input type="range" id="montant" min="5000" max="800000" step="1000" value="200000" oninput="update()">
+        <div class="range-limits"><span id="min-montant">5 000 €</span><span id="max-montant">800 000 €</span></div>
+      </div>
+
+      <div class="form-group">
+        <label>Durée du prêt <span id="lbl-duree">20 ans</span></label>
+        <input type="range" id="duree" min="1" max="30" step="1" value="20" oninput="update()">
+        <div class="range-limits"><span>1 an</span><span>30 ans</span></div>
+      </div>
+
+      <div class="form-group">
+        <label>Taux d'intérêt annuel <span id="lbl-taux">3.5 %</span></label>
+        <input type="range" id="taux" min="0.5" max="12" step="0.05" value="3.5" oninput="update()">
+        <div class="range-limits"><span>0.5%</span><span>12%</span></div>
+      </div>
+
+      <div class="form-group">
+        <label>Assurance mensuelle <span id="lbl-assurance">0 €</span></label>
+        <input type="range" id="assurance" min="0" max="500" step="5" value="0" oninput="update()">
+        <div class="range-limits"><span>0 €</span><span>500 €</span></div>
+      </div>
+
+      <div class="form-group">
+        <label style="margin-bottom:8px">Apport personnel (€)</label>
+        <input type="number" class="input-field" id="apport" placeholder="0" oninput="update()">
+      </div>
+
+      <div class="conseil-box" id="conseil-box">
+        Renseignez les paramètres pour obtenir une analyse personnalisée.
+      </div>
+    </div>
+
+    <!-- RÉSULTATS -->
+    <div>
+      <div class="result-hero">
+        <div class="mensualite-label">Mensualité estimée</div>
+        <div class="mensualite-val" id="res-mensualite">— <span class="mensualite-unit">€/mois</span></div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="s-val blue" id="res-total">—</div>
+          <div class="s-lab">Coût total du crédit</div>
+        </div>
+        <div class="stat-box">
+          <div class="s-val red" id="res-interets">—</div>
+          <div class="s-lab">Total des intérêts</div>
+        </div>
+        <div class="stat-box">
+          <div class="s-val green" id="res-capital">—</div>
+          <div class="s-lab">Capital remboursé</div>
+        </div>
+        <div class="stat-box">
+          <div class="s-val" id="res-taux-eff">—</div>
+          <div class="s-lab">Taux effectif (TAEG)</div>
+        </div>
+      </div>
+
+      <!-- DONUT -->
+      <div class="donut-wrap">
+        <canvas id="donut" width="120" height="120"></canvas>
+        <div class="donut-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--accent2)"></div>Capital emprunté</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--danger)"></div>Intérêts</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,0.2)"></div>Assurance</div>
+        </div>
+      </div>
+
+      <!-- AD rectangle -->
+      <div class="ad-block">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">Publicité</div>
+        <div class="ad-inner"><span style="font-size:13px;color:var(--muted);">Espace 300×250</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD BANNER -->
+  <div class="ad-block" style="max-width:740px;margin:0 auto 48px;">
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">Publicité</div>
+    <div class="ad-inner"><span style="font-size:13px;color:var(--muted);">Espace 728×90</span></div>
+  </div>
+
+  <!-- TABLEAU AMORTISSEMENT -->
+  <div class="amort-section" id="amort-section">
+    <h2>📋 Tableau d'amortissement</h2>
+    <p>Détail mois par mois de votre remboursement · <span id="amort-info"></span></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Mois</th>
+            <th>Mensualité</th>
+            <th>Capital</th>
+            <th>Intérêts</th>
+            <th>Capital restant</th>
+          </tr>
+        </thead>
+        <tbody id="amort-body"></tbody>
+      </table>
+      <button class="show-more-btn" id="show-more-btn" onclick="toggleTable()">▼ Afficher tout le tableau</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#quiz">Quiz finances</a>
+    <a href="#">Mentions légales</a>
+    <a href="#">Contact</a>
+  </div>
+  <p>© 2025 FinanceIQ · Simulation indicative uniquement · Consultez un conseiller bancaire pour un devis officiel</p>
+</footer>
+
+<script>
+// ─── TYPES DE CRÉDIT ───
+const types = {
+  immo: { montantMin:50000, montantMax:800000, montantDef:200000, dureeMax:30, tauxDef:3.5, label:"immobilier" },
+  conso: { montantMin:500,   montantMax:75000,  montantDef:10000,  dureeMax:7,  tauxDef:5.5, label:"consommation" },
+  auto:  { montantMin:3000,  montantMax:100000, montantDef:20000,  dureeMax:7,  tauxDef:4.2, label:"auto" }
+};
+
+const tauxMarche = {
+  immo:  [{label:"15 ans", val:3.2},{label:"20 ans", val:3.5},{label:"25 ans", val:3.7}],
+  conso: [{label:"12 mois", val:4.5},{label:"36 mois", val:5.5},{label:"60 mois", val:6.2}],
+  auto:  [{label:"36 mois", val:3.9},{label:"60 mois", val:4.2},{label:"84 mois", val:4.8}]
+};
+
+let currentType = 'immo';
+let showAll = false;
+
+function setType(type, btn) {
+  currentType = type;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const t = types[type];
+  const m = document.getElementById('montant');
+  const d = document.getElementById('duree');
+  const tx = document.getElementById('taux');
+  m.min = t.montantMin; m.max = t.montantMax; m.value = t.montantDef;
+  document.getElementById('min-montant').textContent = fmt(t.montantMin);
+  document.getElementById('max-montant').textContent = fmt(t.montantMax);
+  d.max = t.dureeMax;
+  if (parseInt(d.value) > t.dureeMax) d.value = t.dureeMax;
+  tx.value = t.tauxDef;
+  renderTaux(type);
+  update();
+}
+
+function renderTaux(type) {
+  const wrap = document.getElementById('taux-rapides');
+  wrap.innerHTML = '';
+  tauxMarche[type].forEach(item => {
+    const b = document.createElement('button');
+    b.className = 'taux-badge';
+    b.textContent = `${item.label} · ${item.val}%`;
+    b.onclick = () => {
+      document.getElementById('taux').value = item.val;
+      update();
+    };
+    wrap.appendChild(b);
+  });
+}
+
+// ─── CALCULS ───
+function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+function fmtPct(n) { return n.toFixed(2) + ' %'; }
+
+function calculer(capital, tauxAnnuel, dureeAns) {
+  const tauxMensuel = tauxAnnuel / 100 / 12;
+  const n = dureeAns * 12;
+  if (tauxMensuel === 0) return { mensualite: capital / n, interetsTotal: 0 };
+  const mensualite = capital * (tauxMensuel * Math.pow(1 + tauxMensuel, n)) / (Math.pow(1 + tauxMensuel, n) - 1);
+  return { mensualite, interetsTotal: mensualite * n - capital };
+}
+
+function genAmortissement(capital, tauxAnnuel, dureeAns) {
+  const tauxMensuel = tauxAnnuel / 100 / 12;
+  const n = dureeAns * 12;
+  const { mensualite } = calculer(capital, tauxAnnuel, dureeAns);
+  let restant = capital;
+  const rows = [];
+  for (let i = 1; i <= n; i++) {
+    const interets = restant * tauxMensuel;
+    const principal = mensualite - interets;
+    restant = Math.max(0, restant - principal);
+    rows.push({ mois:i, mensualite, principal, interets, restant });
+  }
+  return rows;
+}
+
+function drawDonut(capitalPct, interetsPct, assurancePct) {
+  const canvas = document.getElementById('donut');
+  const ctx = canvas.getContext('2d');
+  const cx = 60, cy = 60, r = 50, lineW = 16;
+  ctx.clearRect(0,0,120,120);
+  const data = [
+    { pct: capitalPct,   color: '#4f8eff' },
+    { pct: interetsPct,  color: '#ff6b6b' },
+    { pct: assurancePct, color: 'rgba(255,255,255,0.15)' }
+  ];
+  let start = -Math.PI / 2;
+  data.forEach(d => {
+    if (d.pct <= 0) return;
+    const end = start + (d.pct / 100) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, start, end);
+    ctx.strokeStyle = d.color;
+    ctx.lineWidth = lineW;
+    ctx.stroke();
+    start = end + 0.03;
+  });
+}
+
+function update() {
+  const montant = parseFloat(document.getElementById('montant').value);
+  const duree   = parseInt(document.getElementById('duree').value);
+  const taux    = parseFloat(document.getElementById('taux').value);
+  const assur   = parseFloat(document.getElementById('assurance').value) || 0;
+  const apport  = parseFloat(document.getElementById('apport').value) || 0;
+  const capital = Math.max(0, montant - apport);
+
+  document.getElementById('lbl-montant').textContent = fmt(montant);
+  document.getElementById('lbl-duree').textContent = duree + (duree > 1 ? ' ans' : ' an');
+  document.getElementById('lbl-taux').textContent = parseFloat(taux).toFixed(2) + ' %';
+  document.getElementById('lbl-assurance').textContent = assur + ' €';
+
+  const { mensualite, interetsTotal } = calculer(capital, taux, duree);
+  const mensualiteAvecAssur = mensualite + assur;
+  const assurTotal = assur * duree * 12;
+  const coutTotal = capital + interetsTotal + assurTotal;
+
+  document.getElementById('res-mensualite').innerHTML = `${Math.round(mensualiteAvecAssur).toLocaleString('fr-FR')} <span class="mensualite-unit">€/mois</span>`;
+  document.getElementById('res-total').textContent = fmt(coutTotal);
+  document.getElementById('res-interets').textContent = fmt(interetsTotal);
+  document.getElementById('res-capital').textContent = fmt(capital);
+
+  const taegApprox = taux + (assurTotal / (capital * duree / 2)) * 100;
+  document.getElementById('res-taux-eff').textContent = fmtPct(Math.min(taegApprox, taux + 1));
+
+  // Donut
+  const tot = interetsTotal + assurTotal + capital;
+  drawDonut(
+    tot > 0 ? (capital / tot) * 100 : 0,
+    tot > 0 ? (interetsTotal / tot) * 100 : 0,
+    tot > 0 ? (assurTotal / tot) * 100 : 0
+  );
+
+  // Conseil
+  const ratioInterets = interetsTotal / capital;
+  let conseil = '';
+  if (taux > 6) conseil = `<strong>⚠️ Taux élevé :</strong> À ${taux}%, comparez les offres bancaires. Une différence de 1% sur ${fmt(capital)} représente ${fmt(capital * 0.01 * duree)} d'économies sur la durée.`;
+  else if (ratioInterets > 0.5) conseil = `<strong>💡 Durée longue :</strong> Vous remboursez ${Math.round(ratioInterets * 100)}% du capital en intérêts. Réduire la durée de 5 ans diminuerait significativement le coût total.`;
+  else if (apport > 0) conseil = `<strong>✅ Bon apport :</strong> Votre apport de ${fmt(apport)} réduit le coût total de ${fmt(apport * (1 + ratioInterets))} et améliore vos chances d'obtenir un bon taux.`;
+  else conseil = `<strong>💡 Conseil :</strong> Un apport personnel de 10-20% du montant réduit les intérêts et rassure les banques. Sur ce prêt, 10% = ${fmt(montant * 0.1)} d'apport recommandé.`;
+  document.getElementById('conseil-box').innerHTML = conseil;
+
+  // Tableau amortissement
+  buildAmortTable(capital, taux, duree);
+}
+
+// ─── TABLEAU ───
+let amortData = [];
+
+function buildAmortTable(capital, taux, duree) {
+  amortData = genAmortissement(capital, taux, duree);
+  const n = duree * 12;
+  document.getElementById('amort-info').textContent = `${n} mensualités · ${duree} ans`;
+  renderTable();
+}
+
+function renderTable() {
+  const tbody = document.getElementById('amort-body');
+  const limit = showAll ? amortData.length : Math.min(12, amortData.length);
+  tbody.innerHTML = '';
+  amortData.slice(0, limit).forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${r.mois}</td>
+      <td class="td-mensualite">${Math.round(r.mensualite).toLocaleString('fr-FR')} €</td>
+      <td class="td-principal">${Math.round(r.principal).toLocaleString('fr-FR')} €</td>
+      <td class="td-interets">${Math.round(r.interets).toLocaleString('fr-FR')} €</td>
+      <td class="td-restant">${Math.round(r.restant).toLocaleString('fr-FR')} €</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  const btn = document.getElementById('show-more-btn');
+  if (amortData.length <= 12) { btn.style.display = 'none'; return; }
+  btn.style.display = 'block';
+  btn.textContent = showAll ? '▲ Réduire le tableau' : `▼ Afficher les ${amortData.length - 12} autres mois`;
+}
+
+function toggleTable() { showAll = !showAll; renderTable(); }
+
+// ─── INIT ───
+renderTaux('immo');
+update();
+</script>
+</body>
+</html>
