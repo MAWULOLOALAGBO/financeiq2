@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investir 100€/mois : ce que ça donne vraiment en 25 ans | FinanceIQ</title>
+  <meta name="description" content="La démonstration chiffrée de la puissance des intérêts composés. Que devient 100€ investi chaque mois pendant 25 ans ? Les résultats vont vous surprendre.">
+  <meta name="keywords" content="investir 100 euros mois, simulation épargne mensuelle, intérêts composés simulation, DCA mensuel résultats, épargne long terme">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1e;--surface:#111827;--card:#161f35;--accent:#00e5a0;--accent2:#4f8eff;--text:#f0f4ff;--muted:#7a8aaa;--border:rgba(255,255,255,0.07);--font-head:'Syne',sans-serif;--font-body:'DM Sans',sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(10,15,30,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--accent);letter-spacing:-0.5px;text-decoration:none}
+    .logo span{color:var(--text)}
+    .nav-links{display:flex;gap:28px}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    @media(max-width:700px){nav{padding:16px 20px}.nav-links{display:none}}
+
+    .page-layout{display:grid;grid-template-columns:1fr 280px;gap:40px;max-width:1060px;margin:0 auto;padding:100px 20px 80px;align-items:start}
+    @media(max-width:900px){.page-layout{grid-template-columns:1fr}}
+    .sidebar{position:sticky;top:90px}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+    .sidebar-card h4{font-family:var(--font-head);font-size:15px;font-weight:700;margin-bottom:16px}
+    .toc-list{list-style:none}
+    .toc-list li{margin-bottom:10px}
+    .toc-list a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s;display:flex;gap:8px;align-items:start}
+    .toc-list a:hover{color:var(--accent)}
+    .toc-num{color:var(--accent);font-weight:700;font-size:11px;margin-top:2px;flex-shrink:0}
+
+    .article-hero{margin-bottom:48px}
+    .breadcrumb{font-size:13px;color:var(--muted);margin-bottom:20px}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .article-tag{display:inline-block;background:rgba(0,229,160,0.12);color:var(--accent);font-size:11px;font-weight:700;padding:5px 14px;border-radius:50px;letter-spacing:1px;margin-bottom:20px}
+    .article-title{font-family:var(--font-head);font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px}
+    .article-intro{font-size:19px;color:var(--muted);line-height:1.65;margin-bottom:24px;font-weight:300}
+    .article-meta{display:flex;gap:20px;font-size:13px;color:var(--muted);padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap}
+    .article-visual{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;margin:40px 0}
+
+    .article-content h2{font-family:var(--font-head);font-size:26px;font-weight:800;letter-spacing:-0.5px;margin:48px 0 16px}
+    .article-content h3{font-family:var(--font-head);font-size:19px;font-weight:700;margin:28px 0 12px;color:var(--accent)}
+    .article-content p{margin-bottom:18px}
+    .article-content strong{color:var(--accent);font-weight:600}
+    .article-content ul{margin:16px 0 20px 24px}
+    .article-content li{margin-bottom:10px}
+
+    /* RÉSULTATS CHIFFRÉS */
+    .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:28px 0}
+    .result-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+    .rb-years{font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+    .rb-amount{font-family:var(--font-head);font-size:24px;font-weight:800;color:var(--accent);margin-bottom:4px}
+    .rb-versed{font-size:12px;color:var(--muted)}
+    .rb-gain{font-size:13px;font-weight:600;color:var(--accent2);margin-top:6px}
+
+    /* MONTANTS COMPARÉS */
+    .amounts-compare{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:28px 0}
+    @media(max-width:600px){.amounts-compare{grid-template-columns:1fr}}
+    .amount-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center;transition:all .2s}
+    .amount-card:hover{border-color:rgba(0,229,160,0.3)}
+    .ac-label{font-size:13px;color:var(--muted);margin-bottom:10px}
+    .ac-amount{font-family:var(--font-head);font-size:28px;font-weight:800;margin-bottom:6px}
+    .ac-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+    .highlight{background:rgba(0,229,160,0.07);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+    .highlight-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--accent);margin-bottom:8px}
+    .highlight p{margin-bottom:0;color:var(--muted)}
+
+    .info-box{background:rgba(79,142,255,0.07);border-left:4px solid var(--accent2);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+    .info-box p{margin-bottom:0;color:var(--muted)}
+
+    /* CANVAS */
+    canvas{width:100%;border-radius:10px}
+
+    .tool-cta{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(0,229,160,0.1),rgba(79,142,255,0.08));border:1px solid rgba(0,229,160,0.25);border-radius:16px;padding:24px;margin:36px 0;text-decoration:none;color:inherit;transition:all .25s}
+    .tool-cta:hover{border-color:rgba(0,229,160,0.5);transform:translateY(-2px)}
+    .tool-cta-icon{font-size:36px;flex-shrink:0}
+    .tool-cta-title{font-family:var(--font-head);font-size:17px;font-weight:700;margin-bottom:4px}
+    .tool-cta-desc{font-size:13px;color:var(--muted)}
+    .tool-cta-arrow{margin-left:auto;color:var(--accent);font-size:22px}
+
+    .article-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:60px;padding-top:40px;border-top:1px solid var(--border)}
+    @media(max-width:600px){.article-nav{grid-template-columns:1fr}}
+    .art-nav-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-decoration:none;color:inherit;transition:all .2s}
+    .art-nav-card:hover{border-color:rgba(0,229,160,0.3)}
+    .art-nav-label{font-size:12px;color:var(--muted);margin-bottom:8px}
+    .art-nav-title{font-size:15px;font-weight:600}
+
+    .ad-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;margin:36px 0}
+    .ad-inner{min-height:90px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);border-radius:8px}
+
+    footer{border-top:1px solid var(--border);padding:40px 20px;text-align:center;color:var(--muted);font-size:13px}
+    .footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+    .footer-links a{color:var(--muted);text-decoration:none}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">Finance<span>IQ</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Accueil</a>
+    <a href="../calculateur.html">Crédit</a>
+    <a href="../epargne.html">Épargne</a>
+    <a href="../blog.html">Blog</a>
+  </div>
+</nav>
+
+<div class="page-layout">
+<article>
+  <div class="article-hero">
+    <div class="breadcrumb"><a href="../index.html">Accueil</a> › <a href="../blog.html">Blog</a> › Investir 100€/mois</div>
+    <div class="article-tag">💚 INVESTISSEMENT</div>
+    <h1 class="article-title">Investir 100€/mois : ce que ça donne vraiment en 25 ans</h1>
+    <p class="article-intro">La démonstration chiffrée de la puissance des intérêts composés. Que devient 100€ investi chaque mois pendant 25 ans ? Les résultats vont vous surprendre — et peut-être changer votre rapport à l'argent.</p>
+    <div class="article-meta">
+      <span>📅 Janvier 2025</span><span>⏱️ 7 min de lecture</span><span>✍️ FinanceIQ</span><span>👁️ Tous niveaux</span>
+    </div>
+  </div>
+
+  <!-- GRAPHIQUE INTERACTIF -->
+  <div class="article-visual">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;text-align:center">Évolution de 100€/mois selon différents taux de rendement</p>
+    <canvas id="chart" height="280"></canvas>
+  </div>
+
+  <div class="article-content">
+
+    <h2 id="resultats">Les résultats qui font réfléchir</h2>
+    <p>Avant toute explication, voici les chiffres bruts. <strong>100€ investis chaque mois pendant 25 ans</strong>, selon le taux de rendement annuel :</p>
+
+    <div class="results-grid">
+      <div class="result-box">
+        <div class="rb-years">3% / an</div>
+        <div class="rb-amount">44 600€</div>
+        <div class="rb-versed">Versé : 30 000€</div>
+        <div class="rb-gain">+14 600€ d'intérêts</div>
+      </div>
+      <div class="result-box">
+        <div class="rb-years">5% / an</div>
+        <div class="rb-amount">59 550€</div>
+        <div class="rb-versed">Versé : 30 000€</div>
+        <div class="rb-gain">+29 550€ d'intérêts</div>
+      </div>
+      <div class="result-box">
+        <div class="rb-years">7% / an</div>
+        <div class="rb-amount" style="color:#f5a623">81 000€</div>
+        <div class="rb-versed">Versé : 30 000€</div>
+        <div class="rb-gain">+51 000€ d'intérêts</div>
+      </div>
+      <div class="result-box">
+        <div class="rb-years">9% / an</div>
+        <div class="rb-amount" style="color:#ff6b6b">111 400€</div>
+        <div class="rb-versed">Versé : 30 000€</div>
+        <div class="rb-gain">+81 400€ d'intérêts</div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-title">🤯 Le chiffre qui résume tout</div>
+      <p>À 7%/an (rendement historique moyen des ETF actions mondiales), vous avez versé <strong>30 000€</strong> de votre poche sur 25 ans. Votre capital final est de <strong>81 000€</strong>. Les intérêts ont généré <strong>plus d'argent que vous</strong> — 51 000€ contre 30 000€.</p>
+    </div>
+
+    <h2 id="magie">La magie des intérêts composés expliquée</h2>
+    <p>L'intérêt composé fonctionne parce que <strong>chaque euro gagné travaille à son tour</strong>. Ce n'est pas de la magie — c'est des mathématiques. Voici ce qui se passe en coulisses :</p>
+
+    <div class="info-box">
+      <p><strong style="color:var(--accent2)">Mois 1 :</strong> Vous versez 100€. Vous gagnez ~0.58€ d'intérêts (7%/12). Capital : 100.58€<br>
+      <strong style="color:var(--accent2)">Mois 2 :</strong> Vous versez 100€ de plus. Les intérêts s'appliquent sur 200.58€. Capital : 201.75€<br>
+      <strong style="color:var(--accent2)">Année 10 :</strong> Votre capital est de ~17 400€. Ce mois-là, les intérêts seuls génèrent ~100€ — autant que votre versement !<br>
+      <strong style="color:var(--accent2)">Année 25 :</strong> Votre capital de 81 000€ génère ~470€/mois d'intérêts sans rien faire.</p>
+    </div>
+
+    <p>C'est le <strong>point d'inflexion</strong> que tout investisseur cherche à atteindre : le moment où les intérêts générés dépassent les versements. Avec 100€/mois à 7%, ce point arrive vers <strong>l'année 10</strong>.</p>
+
+    <h2 id="comparaison">Comparaison : épargner tôt vs épargner tard</h2>
+    <p>Voici la démonstration la plus convaincante sur l'importance de commencer tôt :</p>
+
+    <div class="amounts-compare">
+      <div class="amount-card">
+        <div class="ac-label">🟢 Alice commence à 25 ans</div>
+        <div class="ac-amount" style="color:var(--accent)">200 000€</div>
+        <div class="ac-desc">100€/mois pendant 40 ans à 7%<br>Versé : 48 000€<br>Intérêts : 152 000€</div>
+      </div>
+      <div class="amount-card">
+        <div class="ac-label">🟡 Bob commence à 35 ans</div>
+        <div class="ac-amount" style="color:#f5a623">81 000€</div>
+        <div class="ac-desc">100€/mois pendant 25 ans à 7%<br>Versé : 30 000€<br>Intérêts : 51 000€</div>
+      </div>
+      <div class="amount-card">
+        <div class="ac-label">🔴 Clara commence à 45 ans</div>
+        <div class="ac-amount" style="color:#ff6b6b">30 700€</div>
+        <div class="ac-desc">100€/mois pendant 15 ans à 7%<br>Versé : 18 000€<br>Intérêts : 12 700€</div>
+      </div>
+    </div>
+
+    <p>Alice, Bob et Clara versent le même montant chaque mois. La seule différence : <strong>l'âge auquel ils commencent</strong>. Alice finit avec <strong>6 fois plus</strong> que Clara — pas parce qu'elle a gagné plus, mais parce qu'elle a commencé 20 ans plus tôt.</p>
+
+    <div class="ad-block">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Publicité</div>
+      <div class="ad-inner"><span style="font-size:13px;color:var(--muted)">336×280</span></div>
+    </div>
+
+    <h2 id="comment">Comment investir 100€/mois concrètement</h2>
+
+    <h3>Étape 1 : Choisir l'enveloppe fiscale</h3>
+    <p>Pour un horizon de 10+ ans, le <strong>PEA (Plan d'Épargne en Actions)</strong> est imbattable fiscalement. Après 5 ans, vos gains ne sont taxés qu'à 17.2% au lieu de 30%. Sur 25 ans, cela représente des milliers d'euros d'économies.</p>
+
+    <h3>Étape 2 : Choisir les supports</h3>
+    <p>Pour 100€/mois sur le long terme, la stratégie la plus simple et la plus efficace : un seul ETF MSCI World. Pourquoi ?</p>
+    <ul>
+      <li><strong>Diversification automatique</strong> : 1 500+ entreprises dans 23 pays</li>
+      <li><strong>Frais ultra-faibles</strong> : 0.1-0.3%/an seulement</li>
+      <li><strong>Performance prouvée</strong> : ~9%/an en moyenne sur 30 ans (dividendes réinvestis)</li>
+      <li><strong>Simplicité</strong> : pas besoin de suivre les marchés ou de choisir des actions</li>
+    </ul>
+
+    <h3>Étape 3 : Automatiser les versements</h3>
+    <p>C'est l'étape que la plupart des gens sautent — et c'est la plus importante. Mettez en place un <strong>virement automatique</strong> le jour de réception de votre salaire. Ce qui n'est pas visible n'est pas dépensé.</p>
+
+    <h3>Étape 4 : Ne pas toucher pendant des années</h3>
+    <p>La règle d'or : <strong>investissez et oubliez</strong>. Les marchés montent et descendent. Sur 25 ans, peu importe les crises (2008, 2020...) — les indices actions sont toujours repartis à la hausse et ont établi de nouveaux records.</p>
+
+    <div class="highlight">
+      <div class="highlight-title">📊 Quid des crises boursières ?</div>
+      <p>En investissant régulièrement (DCA), les crises sont vos alliées : vous achetez plus de parts quand les cours sont bas. Un investisseur qui a maintenu ses versements mensuels pendant la crise de 2008 a multiplié son capital par 4 dans les 10 années suivantes.</p>
+    </div>
+
+    <h2 id="variantes">Et si j'investissais davantage ?</h2>
+    <p>La même logique s'applique à n'importe quel montant. À 7%/an pendant 25 ans :</p>
+    <ul>
+      <li><strong>50€/mois</strong> → 40 500€ (versé : 15 000€)</li>
+      <li><strong>100€/mois</strong> → 81 000€ (versé : 30 000€)</li>
+      <li><strong>200€/mois</strong> → 162 000€ (versé : 60 000€)</li>
+      <li><strong>500€/mois</strong> → 405 000€ (versé : 150 000€)</li>
+      <li><strong>1 000€/mois</strong> → 810 000€ (versé : 300 000€)</li>
+    </ul>
+    <p>Dans tous les cas, les intérêts finissent par dépasser le capital versé. C'est la puissance des intérêts composés — elle ne dépend pas du montant, mais de la <strong>durée et de la régularité</strong>.</p>
+
+    <a href="../epargne.html" class="tool-cta">
+      <span class="tool-cta-icon">📈</span>
+      <div>
+        <div class="tool-cta-title">Simulez votre propre projection</div>
+        <div class="tool-cta-desc">Notre simulateur calcule exactement ce que donnera votre épargne mensuelle avec votre taux et votre horizon</div>
+      </div>
+      <span class="tool-cta-arrow">→</span>
+    </a>
+
+    <h2 id="conclusion">Conclusion : 100€/mois, une révolution silencieuse</h2>
+    <p>100€/mois, c'est environ 3.30€ par jour. Le prix d'un café. Et pourtant, investi intelligemment sur 25 ans, c'est un capital de <strong>81 000€</strong> — dont plus de la moitié vient des intérêts, pas de votre poche.</p>
+    <p>Le message n'est pas "devenez riche facilement". C'est : <strong>commencez tôt, soyez régulier, laissez le temps travailler pour vous</strong>. Ce sont les trois ingrédients d'une épargne efficace, accessibles à presque tout le monde.</p>
+    <p>La question n'est pas "ai-je assez d'argent pour investir ?" mais "est-ce que je peux me permettre de ne pas le faire ?"</p>
+
+    <div class="article-nav">
+      <a href="pea-vs-assurance-vie.html" class="art-nav-card">
+        <div class="art-nav-label">← Article précédent</div>
+        <div class="art-nav-title">PEA vs Assurance-vie : le comparatif</div>
+      </a>
+      <a href="erreurs-financieres-30-ans.html" class="art-nav-card" style="text-align:right">
+        <div class="art-nav-label">Article suivant →</div>
+        <div class="art-nav-title">Les 7 erreurs financières avant 30 ans</div>
+      </a>
+    </div>
+  </div>
+</article>
+
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <h4>📋 Dans cet article</h4>
+    <ul class="toc-list">
+      <li><a href="#resultats"><span class="toc-num">01</span>Les résultats chiffrés</a></li>
+      <li><a href="#magie"><span class="toc-num">02</span>La magie des intérêts</a></li>
+      <li><a href="#comparaison"><span class="toc-num">03</span>Tôt vs tard</a></li>
+      <li><a href="#comment"><span class="toc-num">04</span>Comment investir</a></li>
+      <li><a href="#variantes"><span class="toc-num">05</span>Autres montants</a></li>
+      <li><a href="#conclusion"><span class="toc-num">06</span>Conclusion</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h4>🛠️ Outils liés</h4>
+    <a href="../epargne.html" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.15);border-radius:10px;text-decoration:none;color:var(--text);margin-bottom:10px;font-size:13px">
+      <span>📈</span><span>Simulateur d'épargne</span>
+    </a>
+    <a href="../chatbot.html" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(79,142,255,0.06);border:1px solid rgba(79,142,255,0.15);border-radius:10px;text-decoration:none;color:var(--text);font-size:13px">
+      <span>🤖</span><span>Poser une question</span>
+    </a>
+  </div>
+  <div class="ad-block" style="margin:0">
+    <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Publicité</div>
+    <div class="ad-inner" style="min-height:250px"><span style="font-size:13px;color:var(--muted)">300×250</span></div>
+  </div>
+</aside>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="../index.html">Accueil</a><a href="../blog.html">Blog</a><a href="../epargne.html">Simulateur</a><a href="../chatbot.html">Assistant</a>
+  </div>
+  <p>© 2025 FinanceIQ · Simulations basées sur des rendements historiques · Pas de garantie de performance future</p>
+</footer>
+
+<script>
+// Graphique des 4 scénarios
+const canvas = document.getElementById('chart');
+const W = canvas.offsetWidth || 680;
+const H = 280;
+canvas.width = W * window.devicePixelRatio;
+canvas.height = H * window.devicePixelRatio;
+canvas.style.width = W + 'px';
+canvas.style.height = H + 'px';
+const ctx = canvas.getContext('2d');
+ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+const taux = [0.03, 0.05, 0.07, 0.09];
+const colors = ['#7a8aaa', '#4f8eff', '#00e5a0', '#f5a623'];
+const labels = ['3%', '5%', '7%', '9%'];
+const years = 25;
+
+function calcSeries(taux, years) {
+  const r = taux / 12;
+  const data = [0];
+  let total = 0;
+  for (let m = 1; m <= years * 12; m++) {
+    total = total * (1 + r) + 100;
+    if (m % 12 === 0) data.push(total);
+  }
+  return data;
+}
+
+const allSeries = taux.map(t => calcSeries(t, years));
+const maxV = Math.max(...allSeries[3]);
+const pad = { t: 20, r: 20, b: 44, l: 72 };
+const cW = W - pad.l - pad.r;
+const cH = H - pad.t - pad.b;
+
+const toX = i => pad.l + (i / years) * cW;
+const toY = v => pad.t + cH - (v / maxV) * cH;
+
+// Grille
+ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+ctx.lineWidth = 1;
+for (let i = 0; i <= 4; i++) {
+  const y = pad.t + (i / 4) * cH;
+  ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + cW, y); ctx.stroke();
+  const val = maxV * (1 - i / 4);
+  ctx.fillStyle = 'rgba(122,138,170,0.8)';
+  ctx.font = '11px DM Sans,sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText(val >= 1000 ? Math.round(val / 1000) + 'k€' : Math.round(val) + '€', pad.l - 6, y + 4);
+}
+
+// Ligne capital versé
+const versed = [];
+for (let y = 0; y <= years; y++) versed.push(y * 12 * 100);
+ctx.beginPath();
+ctx.strokeStyle = 'rgba(122,138,170,0.4)';
+ctx.lineWidth = 1.5;
+ctx.setLineDash([5, 5]);
+versed.forEach((v, i) => i === 0 ? ctx.moveTo(toX(i), toY(v)) : ctx.lineTo(toX(i), toY(v)));
+ctx.stroke();
+ctx.setLineDash([]);
+
+// Courbes
+allSeries.forEach((series, si) => {
+  ctx.beginPath();
+  ctx.strokeStyle = colors[si];
+  ctx.lineWidth = 2.5;
+  series.forEach((v, i) => i === 0 ? ctx.moveTo(toX(i), toY(v)) : ctx.lineTo(toX(i), toY(v)));
+  ctx.stroke();
+  // Label fin de courbe
+  const last = series[series.length - 1];
+  ctx.fillStyle = colors[si];
+  ctx.font = '11px Syne,sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText(labels[si], toX(years) + 4, toY(last) + 4);
+});
+
+// Axe X
+ctx.fillStyle = 'rgba(122,138,170,0.8)';
+ctx.font = '11px DM Sans,sans-serif';
+ctx.textAlign = 'center';
+[0, 5, 10, 15, 20, 25].forEach(y => ctx.fillText(y + 'a', toX(y), H - pad.b + 16));
+
+// Légende
+ctx.font = '11px DM Sans,sans-serif';
+ctx.textAlign = 'left';
+const legX = pad.l;
+colors.forEach((c, i) => {
+  ctx.fillStyle = c;
+  ctx.fillRect(legX + i * 80, H - 12, 14, 3);
+  ctx.fillStyle = 'rgba(122,138,170,0.8)';
+  ctx.fillText(labels[i] + '/an', legX + i * 80 + 18, H - 8);
+});
+ctx.fillStyle = 'rgba(122,138,170,0.5)';
+ctx.fillRect(legX + 4 * 80, H - 12, 14, 3);
+ctx.fillStyle = 'rgba(122,138,170,0.6)';
+ctx.fillText('Versé', legX + 4 * 80 + 18, H - 8);
+</script>
+</body>
+</html>
