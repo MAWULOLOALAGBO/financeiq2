@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Préparer sa retraite à 30, 40 ou 50 ans | FinanceIQ</title>
+  <meta name="description" content="Il n'est jamais trop tôt ni trop tard pour préparer sa retraite. Le plan d'action concret adapté à chaque décennie : PEA, PER, assurance-vie, combien épargner.">
+  <meta name="keywords" content="préparer retraite, épargne retraite, PER plan épargne retraite, retraite 30 ans, retraite 40 ans, combien pour la retraite">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0f1e;--surface:#111827;--card:#161f35;--accent:#00e5a0;--accent2:#4f8eff;--purple:#9c7cff;--warn:#f5a623;--text:#f0f4ff;--muted:#7a8aaa;--border:rgba(255,255,255,0.07);--font-head:'Syne',sans-serif;--font-body:'DM Sans',sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(10,15,30,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--accent);text-decoration:none}
+    .logo span{color:var(--text)}
+    .nav-links{display:flex;gap:28px}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color:var(--accent)}
+    @media(max-width:700px){nav{padding:16px 20px}.nav-links{display:none}}
+    .page-layout{display:grid;grid-template-columns:1fr 280px;gap:40px;max-width:1060px;margin:0 auto;padding:100px 20px 80px;align-items:start}
+    @media(max-width:900px){.page-layout{grid-template-columns:1fr}}
+    .sidebar{position:sticky;top:90px}
+    .sidebar-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+    .sidebar-card h4{font-family:var(--font-head);font-size:15px;font-weight:700;margin-bottom:16px}
+    .toc-list{list-style:none}
+    .toc-list li{margin-bottom:10px}
+    .toc-list a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s;display:flex;gap:8px}
+    .toc-list a:hover{color:var(--accent)}
+    .toc-num{color:var(--purple);font-weight:700;font-size:11px;flex-shrink:0}
+    .article-hero{margin-bottom:48px}
+    .breadcrumb{font-size:13px;color:var(--muted);margin-bottom:20px}
+    .breadcrumb a{color:var(--muted);text-decoration:none}
+    .article-tag{display:inline-block;background:rgba(156,124,255,0.12);color:var(--purple);font-size:11px;font-weight:700;padding:5px 14px;border-radius:50px;letter-spacing:1px;margin-bottom:20px}
+    .article-title{font-family:var(--font-head);font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px}
+    .article-intro{font-size:19px;color:var(--muted);line-height:1.65;margin-bottom:24px;font-weight:300}
+    .article-meta{display:flex;gap:20px;font-size:13px;color:var(--muted);padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap}
+    .article-visual{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;margin:40px 0;display:flex;justify-content:center}
+    .article-content h2{font-family:var(--font-head);font-size:26px;font-weight:800;margin:48px 0 16px}
+    .article-content h3{font-family:var(--font-head);font-size:19px;font-weight:700;margin:28px 0 12px;color:var(--accent)}
+    .article-content p{margin-bottom:18px}
+    .article-content strong{color:var(--accent);font-weight:600}
+    .article-content ul{margin:16px 0 20px 24px}
+    .article-content li{margin-bottom:10px}
+    .decade-card{border-radius:16px;padding:28px;margin:20px 0}
+    .decade-30{background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.25)}
+    .decade-40{background:rgba(79,142,255,0.07);border:1px solid rgba(79,142,255,0.25)}
+    .decade-50{background:rgba(156,124,255,0.07);border:1px solid rgba(156,124,255,0.25)}
+    .decade-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    .decade-num{font-family:var(--font-head);font-size:36px;font-weight:800;line-height:1}
+    .decade-30 .decade-num{color:var(--accent)}
+    .decade-40 .decade-num{color:var(--accent2)}
+    .decade-50 .decade-num{color:var(--purple)}
+    .decade-title{font-family:var(--font-head);font-size:16px;font-weight:700}
+    .decade-sub{font-size:12px;color:var(--muted)}
+    .decade-content p{font-size:14px;color:var(--muted);margin-bottom:12px}
+    .decade-content ul{font-size:14px;color:var(--muted);margin:8px 0 0 18px}
+    .decade-content li{margin-bottom:6px}
+    .decade-content strong{color:var(--text)}
+    .calcul-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin:28px 0}
+    .calcul-box h4{font-family:var(--font-head);font-size:17px;font-weight:700;margin-bottom:16px}
+    .calcul-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+    .calcul-row:last-child{border-bottom:none;font-weight:700;padding-top:14px}
+    .cr-label{color:var(--muted)}
+    .cr-val{font-family:var(--font-head);font-weight:700}
+    .highlight{background:rgba(0,229,160,0.07);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+    .highlight-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--accent);margin-bottom:8px}
+    .highlight p{margin-bottom:0;color:var(--muted)}
+    .per-box{background:rgba(156,124,255,0.07);border-left:4px solid var(--purple);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+    .per-box strong{color:var(--purple)}
+    .per-box p{margin-bottom:0;color:var(--muted)}
+    .tool-cta{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(0,229,160,0.1),rgba(79,142,255,0.08));border:1px solid rgba(0,229,160,0.25);border-radius:16px;padding:24px;margin:36px 0;text-decoration:none;color:inherit;transition:all .25s}
+    .tool-cta:hover{border-color:rgba(0,229,160,0.5);transform:translateY(-2px)}
+    .tool-cta-icon{font-size:36px;flex-shrink:0}
+    .tool-cta-title{font-family:var(--font-head);font-size:17px;font-weight:700;margin-bottom:4px}
+    .tool-cta-desc{font-size:13px;color:var(--muted)}
+    .tool-cta-arrow{margin-left:auto;color:var(--accent);font-size:22px}
+    .article-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:60px;padding-top:40px;border-top:1px solid var(--border)}
+    @media(max-width:600px){.article-nav{grid-template-columns:1fr}}
+    .art-nav-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-decoration:none;color:inherit;transition:all .2s}
+    .art-nav-card:hover{border-color:rgba(0,229,160,0.3)}
+    .art-nav-label{font-size:12px;color:var(--muted);margin-bottom:8px}
+    .art-nav-title{font-size:15px;font-weight:600}
+    .ad-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;margin:36px 0}
+    .ad-inner{min-height:90px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);border-radius:8px}
+    footer{border-top:1px solid var(--border);padding:40px 20px;text-align:center;color:var(--muted);font-size:13px}
+    .footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+    .footer-links a{color:var(--muted);text-decoration:none}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">Finance<span>IQ</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Accueil</a>
+    <a href="../epargne.html">Épargne</a>
+    <a href="../chatbot.html">Assistant</a>
+    <a href="../blog.html">Blog</a>
+  </div>
+</nav>
+<div class="page-layout">
+<article>
+  <div class="article-hero">
+    <div class="breadcrumb"><a href="../index.html">Accueil</a> › <a href="../blog.html">Blog</a> › Préparer sa retraite</div>
+    <div class="article-tag">🟣 RETRAITE</div>
+    <h1 class="article-title">Préparer sa retraite à 30, 40 ou 50 ans</h1>
+    <p class="article-intro">Il n'est jamais trop tôt ni trop tard. Le plan d'action concret adapté à chaque décennie de votre vie — avec les bons outils, les bons montants et les bonnes priorités.</p>
+    <div class="article-meta">
+      <span>📅 Février 2025</span><span>⏱️ 12 min de lecture</span><span>✍️ FinanceIQ</span><span>👁️ Tous niveaux</span>
+    </div>
+  </div>
+
+  <div class="article-visual">
+    <svg width="460" height="180" viewBox="0 0 460 180">
+      <rect x="10" y="40" width="120" height="110" rx="12" fill="rgba(0,229,160,0.08)" stroke="rgba(0,229,160,0.3)" stroke-width="1.5"/>
+      <text x="70" y="72" text-anchor="middle" fill="#00e5a0" font-family="Syne,sans-serif" font-size="28" font-weight="800">30</text>
+      <text x="70" y="92" text-anchor="middle" fill="#7a8aaa" font-family="DM Sans,sans-serif" font-size="11">ans</text>
+      <text x="70" y="112" text-anchor="middle" fill="white" font-family="Syne,sans-serif" font-size="12" font-weight="700">200€/mois</text>
+      <text x="70" y="130" text-anchor="middle" fill="#00e5a0" font-family="Syne,sans-serif" font-size="14" font-weight="800">→ 520k€</text>
+      <rect x="170" y="25" width="120" height="125" rx="12" fill="rgba(79,142,255,0.08)" stroke="rgba(79,142,255,0.3)" stroke-width="1.5"/>
+      <text x="230" y="57" text-anchor="middle" fill="#4f8eff" font-family="Syne,sans-serif" font-size="28" font-weight="800">40</text>
+      <text x="230" y="77" text-anchor="middle" fill="#7a8aaa" font-family="DM Sans,sans-serif" font-size="11">ans</text>
+      <text x="230" y="97" text-anchor="middle" fill="white" font-family="Syne,sans-serif" font-size="12" font-weight="700">400€/mois</text>
+      <text x="230" y="115" text-anchor="middle" fill="#4f8eff" font-family="Syne,sans-serif" font-size="14" font-weight="800">→ 325k€</text>
+      <rect x="330" y="10" width="120" height="140" rx="12" fill="rgba(156,124,255,0.08)" stroke="rgba(156,124,255,0.3)" stroke-width="1.5"/>
+      <text x="390" y="42" text-anchor="middle" fill="#9c7cff" font-family="Syne,sans-serif" font-size="28" font-weight="800">50</text>
+      <text x="390" y="62" text-anchor="middle" fill="#7a8aaa" font-family="DM Sans,sans-serif" font-size="11">ans</text>
+      <text x="390" y="82" text-anchor="middle" fill="white" font-family="Syne,sans-serif" font-size="12" font-weight="700">800€/mois</text>
+      <text x="390" y="100" text-anchor="middle" fill="#9c7cff" font-family="Syne,sans-serif" font-size="14" font-weight="800">→ 193k€</text>
+      <text x="230" y="168" text-anchor="middle" fill="#7a8aaa" font-family="DM Sans,sans-serif" font-size="10">Simulation à 7%/an jusqu'à 65 ans</text>
+    </svg>
+  </div>
+
+  <div class="article-content">
+
+    <div class="highlight">
+      <div class="highlight-title">📐 La règle clé à retenir</div>
+      <p>Chaque décennie de retard <strong>double le montant mensuel nécessaire</strong> pour atteindre le même objectif. Commencer à 30 ans avec 200€/mois donne le même résultat que commencer à 40 ans avec 400€/mois. Le temps est votre ressource la plus précieuse.</p>
+    </div>
+
+    <h2 id="combien">Combien faut-il épargner pour la retraite ?</h2>
+    <p>La réponse dépend de votre niveau de vie souhaité à la retraite. Une règle simple : <strong>multipliez votre revenu annuel souhaité par 25</strong>. C'est le capital nécessaire pour que vos retraits représentent 4% par an (règle des 4% issue des recherches de William Bengen).</p>
+
+    <div class="calcul-box">
+      <h4>💡 Exemple : viser 2 000€/mois net à la retraite</h4>
+      <div class="calcul-row"><span class="cr-label">Revenu annuel souhaité</span><span class="cr-val" style="color:var(--accent)">24 000€</span></div>
+      <div class="calcul-row"><span class="cr-label">Capital nécessaire (×25)</span><span class="cr-val" style="color:var(--accent2)">600 000€</span></div>
+      <div class="calcul-row"><span class="cr-label">Moins retraite Sécu estimée</span><span class="cr-val" style="color:var(--muted)">-14 400€/an</span></div>
+      <div class="calcul-row"><span class="cr-label">Capital à constituer soi-même</span><span class="cr-val" style="color:var(--purple)">240 000€</span></div>
+    </div>
+
+    <h2 id="trente">À 30 ans : poser les fondations</h2>
+    <div class="decade-card decade-30">
+      <div class="decade-header">
+        <div class="decade-num">30</div>
+        <div><div class="decade-title">La décennie la plus précieuse</div><div class="decade-sub">35 ans devant vous — le temps travaille pour vous</div></div>
+      </div>
+      <div class="decade-content">
+        <p>À 30 ans, vous avez le temps de votre côté. La priorité n'est pas le montant mais la <strong>régularité et les bonnes enveloppes</strong>.</p>
+        <ul>
+          <li><strong>Ouvrez un PEA immédiatement</strong> (même avec 100€) — le délai de 5 ans commence maintenant</li>
+          <li><strong>Investissez en ETF MSCI World</strong> — 200 à 300€/mois suffisent pour des résultats impressionnants</li>
+          <li><strong>Ouvrez une assurance-vie</strong> (même avec 50€) — le délai de 8 ans aussi</li>
+          <li>Visez <strong>10-15% de vos revenus</strong> vers la retraite</li>
+          <li>Ne touchez à rien avant la retraite — la patience est tout</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ad-block">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Publicité</div>
+      <div class="ad-inner"><span style="font-size:13px;color:var(--muted)">336×280</span></div>
+    </div>
+
+    <h2 id="quarante">À 40 ans : accélérer</h2>
+    <div class="decade-card decade-40">
+      <div class="decade-header">
+        <div class="decade-num">40</div>
+        <div><div class="decade-title">La décennie d'accélération</div><div class="decade-sub">25 ans devant vous — il faut intensifier</div></div>
+      </div>
+      <div class="decade-content">
+        <p>À 40 ans, les revenus sont souvent plus élevés et les charges (enfants, crédit) commencent à se réduire. C'est le moment d'augmenter les versements.</p>
+        <ul>
+          <li><strong>Augmentez les versements PEA</strong> jusqu'au plafond si possible (150 000€)</li>
+          <li><strong>Commencez à diversifier</strong> : une partie en fonds euros si vous voulez sécuriser</li>
+          <li><strong>Vérifiez votre relevé de retraite</strong> sur info-retraite.fr — estimez ce que vous toucherez réellement</li>
+          <li>Visez <strong>15-20% de vos revenus</strong> vers la retraite</li>
+          <li>Si vous êtes indépendant : ouvrez un <strong>PER individuel</strong> pour défiscaliser</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 id="cinquante">À 50 ans : sécuriser et optimiser</h2>
+    <div class="decade-card decade-50">
+      <div class="decade-header">
+        <div class="decade-num">50</div>
+        <div><div class="decade-title">La décennie de sécurisation</div><div class="decade-sub">15 ans devant vous — protégez ce que vous avez</div></div>
+      </div>
+      <div class="decade-content">
+        <p>À 50 ans, l'horizon se rapproche. Il faut progressivement réduire les risques tout en maximisant les versements.</p>
+        <ul>
+          <li><strong>Basculez progressivement</strong> vers des supports moins volatils (50% actions / 50% fonds euros)</li>
+          <li><strong>Maximisez les versements PER</strong> — à 50 ans dans une TMI élevée, la déduction fiscale est très avantageuse</li>
+          <li><strong>Préparez votre succession</strong> — désignez les bénéficiaires de votre assurance-vie</li>
+          <li>Projetez votre retraite précisément sur info-retraite.fr</li>
+          <li>Considérez un <strong>rachat de trimestres</strong> si vous avez des trous dans votre carrière</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 id="per">Le PER : l'outil fiscalement le plus puissant</h2>
+    <div class="per-box">
+      <p><strong>Le Plan d'Épargne Retraite (PER)</strong> est particulièrement intéressant si votre taux marginal d'imposition est de 30% ou plus. Chaque euro versé est déduit de votre revenu imposable — une réduction fiscale immédiate de 30 à 45%.</p>
+      <p style="margin-top:10px">Exemple : vous versez 5 000€ sur votre PER. Votre impôt baisse de 1 500€ (TMI 30%). Votre épargne nette réelle n'est que de 3 500€ pour 5 000€ investis. La fiscalité s'appliquera à la sortie en rente ou capital — mais souvent à un taux plus faible (revenus à la retraite = TMI plus basse).</p>
+    </div>
+
+    <a href="../epargne.html" class="tool-cta">
+      <span class="tool-cta-icon">📈</span>
+      <div>
+        <div class="tool-cta-title">Simulez votre capital retraite</div>
+        <div class="tool-cta-desc">Entrez votre âge, votre montant mensuel et voyez ce que vous aurez à 65 ans</div>
+      </div>
+      <span class="tool-cta-arrow">→</span>
+    </a>
+
+    <div class="article-nav">
+      <a href="sortir-des-dettes.html" class="art-nav-card">
+        <div class="art-nav-label">← Article précédent</div>
+        <div class="art-nav-title">Sortir des dettes</div>
+      </a>
+      <a href="../blog.html" class="art-nav-card" style="text-align:right">
+        <div class="art-nav-label">Retour au blog →</div>
+        <div class="art-nav-title">Tous les articles</div>
+      </a>
+    </div>
+  </div>
+</article>
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <h4>📋 Dans cet article</h4>
+    <ul class="toc-list">
+      <li><a href="#combien"><span class="toc-num">01</span>Combien faut-il ?</a></li>
+      <li><a href="#trente"><span class="toc-num">02</span>À 30 ans</a></li>
+      <li><a href="#quarante"><span class="toc-num">03</span>À 40 ans</a></li>
+      <li><a href="#cinquante"><span class="toc-num">04</span>À 50 ans</a></li>
+      <li><a href="#per"><span class="toc-num">05</span>Le PER</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h4>🛠️ Outils liés</h4>
+    <a href="../epargne.html" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.15);border-radius:10px;text-decoration:none;color:var(--text);margin-bottom:10px;font-size:13px"><span>📈</span><span>Simulateur d'épargne</span></a>
+    <a href="../chatbot.html" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(156,124,255,0.08);border:1px solid rgba(156,124,255,0.2);border-radius:10px;text-decoration:none;color:var(--text);font-size:13px"><span>🤖</span><span>Poser une question</span></a>
+  </div>
+  <div class="ad-block" style="margin:0"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Publicité</div><div class="ad-inner" style="min-height:250px"><span style="font-size:13px;color:var(--muted)">300×250</span></div></div>
+</aside>
+</div>
+<footer>
+  <div class="footer-links"><a href="../index.html">Accueil</a><a href="../blog.html">Blog</a><a href="../epargne.html">Simulateur</a><a href="../chatbot.html">Assistant</a></div>
+  <p>© 2025 FinanceIQ · Article éducatif · Consultez un conseiller en gestion de patrimoine pour un plan personnalisé</p>
+</footer>
+</body>
+</html>
