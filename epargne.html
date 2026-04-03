@@ -567,31 +567,54 @@ function drawChart(data) {
   ctx.fillText('Capital total (avec intérêts)', pad.l + 138, H - 8);
 }
 
-// Init
-update();
-window.addEventListener('resize', update);
-// ajout pour gerer
-  function getParams() {
+// ═══════════════════════════════════════════════
+// PARAMÈTRES URL — liaison depuis le chatbot
+// Le chatbot envoie : epargne.html?versement=300&duree=20&taux=6
+// ═══════════════════════════════════════════════
+function applyURLParams() {
   const params = new URLSearchParams(window.location.search);
-  return {
-    revenu: params.get('revenu')
-  };
+  const versement = params.get("versement");
+  const duree     = params.get("duree");
+  const taux      = params.get("taux");
+  const capital   = params.get("capital");
+  let changed = false;
+
+  if (versement && !isNaN(versement)) {
+    document.getElementById("versement").value = Math.min(Math.max(parseInt(versement), 0), 3000);
+    changed = true;
+  }
+  if (duree && !isNaN(duree)) {
+    document.getElementById("duree").value = Math.min(Math.max(parseInt(duree), 1), 40);
+    changed = true;
+  }
+  if (taux && !isNaN(taux)) {
+    document.getElementById("taux").value = Math.min(Math.max(parseFloat(taux), 0.5), 12);
+    changed = true;
+  }
+  if (capital && !isNaN(capital)) {
+    document.getElementById("capital").value = Math.min(Math.max(parseInt(capital), 0), 100000);
+    setMode("both");
+    changed = true;
+  }
+
+  if (changed) {
+    if (!capital) setMode("mensuel");
+    update();
+    // Bannière contextuelle
+    setTimeout(() => {
+      const banner = document.createElement("div");
+      banner.style.cssText = "background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.3);border-radius:12px;padding:14px 20px;margin-bottom:20px;font-size:14px;color:var(--text);display:flex;align-items:center;gap:10px;";
+      banner.innerHTML = "<span style='font-size:20px'>🤖</span><span>Simulation personnalisée depuis <strong>FinBot</strong> — ajustez librement !</span><button onclick='this.parentElement.remove()' style='margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px'>×</button>";
+      const main = document.querySelector(".main");
+      if (main) main.insertBefore(banner, main.firstChild);
+    }, 400);
+  }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const data = getParams();
-
-  if (data.revenu) {
-    const input = document.querySelector('#revenu');
-
-    if (input) {
-      input.value = data.revenu;
-
-      // optionnel : déclencher calcul auto
-      input.dispatchEvent(new Event('input'));
-    }
-  }
-});
+// Init
+update();
+window.addEventListener("resize", update);
+applyURLParams();
 </script>
 </body>
 </html>
