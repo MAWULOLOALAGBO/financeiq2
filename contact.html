@@ -84,18 +84,19 @@
 <div class="main">
   <!-- FORMULAIRE -->
   <div class="form-card">
+    <form id="contact-form" action="https://formspree.io/f/mzdkjddo" method="POST">
     <h2>✉️ Envoyer un message</h2>
     <div class="form-group">
       <label>Votre prénom *</label>
-      <input type="text" id="prenom" placeholder="Koffi" required>
+      <input type="text" id="prenom" name="prenom" required>
     </div>
     <div class="form-group">
       <label>Votre email *</label>
-      <input type="email" id="email" placeholder="contactsupportoutilspro@gmail.com" required>
+      <input type="email" id="email" name="email" required>
     </div>
     <div class="form-group">
       <label>Sujet *</label>
-      <select id="sujet">
+      <select id="sujet" name="sujet" required>
         <option value="">— Choisissez un sujet —</option>
         <option value="question">Question sur un outil ou article</option>
         <option value="bug">Signalement d'un bug</option>
@@ -107,9 +108,10 @@
     </div>
     <div class="form-group">
       <label>Votre message *</label>
-      <textarea id="message" placeholder="Décrivez votre demande en détail..."></textarea>
+      <textarea id="message" name="message" required></textarea>
     </div>
-    <button class="submit-btn" onclick="submitForm()">Envoyer le message →</button>
+    <button class="submit-btn" type="submit">Envoyer le message →</button>
+    </form>
     <div class="success-msg" id="success-msg">
       ✅ Message envoyé ! Nous vous répondrons sous 48h ouvrées.
     </div>
@@ -173,29 +175,33 @@
 </footer>
 
 <script>
-function submitForm() {
-  const prenom = document.getElementById('prenom').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const sujet = document.getElementById('sujet').value;
-  const message = document.getElementById('message').value.trim();
-  if (!prenom || !email || !sujet || !message) {
-    alert('Merci de remplir tous les champs obligatoires.');
-    return;
+const form = document.getElementById('contact-form');
+const successMsg = document.getElementById('success-msg');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+
+  if (response.ok) {
+    successMsg.style.display = 'block';
+    form.reset();
+
+    setTimeout(() => {
+      successMsg.style.display = 'none';
+    }, 6000);
+  } else {
+    alert("Erreur lors de l'envoi.");
   }
-  if (!email.includes('@') || !email.includes('.')) {
-    alert('Merci d\'entrer une adresse email valide.');
-    return;
-  }
-  // Simulation envoi (à remplacer par un vrai service comme Formspree ou EmailJS)
-  document.getElementById('success-msg').style.display = 'block';
-  document.getElementById('prenom').value = '';
-  document.getElementById('email').value = '';
-  document.getElementById('sujet').value = '';
-  document.getElementById('message').value = '';
-  setTimeout(() => {
-    document.getElementById('success-msg').style.display = 'none';
-  }, 6000);
-}
+});
 </script>
 </body>
 </html>
