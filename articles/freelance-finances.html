@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indépendants & freelances : gérer ses finances autrement | FinanceIQ</title>
-  <meta name="description" content="Revenus variables, charges sociales, TVA, épargne de précaution renforcée — le guide complet des finances pour travailleurs indépendants et freelances en France.">
-  <meta name="keywords" content="finances freelance, budget indépendant, charges sociales auto-entrepreneur, épargne freelance, TVA freelance">
+  <title>Inflation : comment protéger son argent efficacement | FinanceIQ</title>
+  <meta name="description" content="L'inflation érode silencieusement votre patrimoine. Les actifs et stratégies qui permettent de préserver et faire croître votre pouvoir d'achat malgré la hausse des prix.">
+  <meta name="keywords" content="inflation protection argent, placement anti-inflation, pouvoir achat épargne, actifs inflation, or immobilier inflation">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -28,11 +28,11 @@
     .toc-list li{margin-bottom:10px}
     .toc-list a{color:var(--muted);text-decoration:none;font-size:13px;display:flex;gap:8px;transition:color .2s}
     .toc-list a:hover{color:var(--accent)}
-    .toc-num{color:var(--accent2);font-weight:700;font-size:11px;flex-shrink:0}
+    .toc-num{color:var(--warn);font-weight:700;font-size:11px;flex-shrink:0}
     .article-hero{margin-bottom:48px}
     .breadcrumb{font-size:13px;color:var(--muted);margin-bottom:20px}
     .breadcrumb a{color:var(--muted);text-decoration:none}
-    .article-tag{display:inline-block;background:rgba(79,142,255,0.12);color:var(--accent2);font-size:11px;font-weight:700;padding:5px 14px;border-radius:50px;letter-spacing:1px;margin-bottom:20px}
+    .article-tag{display:inline-block;background:rgba(245,166,35,0.12);color:var(--warn);font-size:11px;font-weight:700;padding:5px 14px;border-radius:50px;letter-spacing:1px;margin-bottom:20px}
     .article-title{font-family:var(--font-head);font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px}
     .article-intro{font-size:19px;color:var(--muted);line-height:1.65;margin-bottom:24px;font-weight:300}
     .article-meta{display:flex;gap:20px;font-size:13px;color:var(--muted);padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap}
@@ -43,23 +43,26 @@
     .article-content strong{color:var(--accent);font-weight:600}
     .article-content ul{margin:16px 0 20px 24px}
     .article-content li{margin-bottom:10px}
-    .repartition-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin:28px 0}
-    .repartition-box h4{font-family:var(--font-head);font-size:17px;font-weight:700;margin-bottom:18px}
-    .rep-row{display:flex;align-items:center;gap:16px;margin-bottom:14px}
-    .rep-label{width:160px;font-size:14px;color:var(--muted);flex-shrink:0}
-    .rep-bar-wrap{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
-    .rep-bar{height:100%;border-radius:4px}
-    .rep-val{width:60px;text-align:right;font-family:var(--font-head);font-size:14px;font-weight:700;flex-shrink:0}
-    .warning-box{background:rgba(255,107,107,0.07);border-left:4px solid var(--danger);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
-    .warning-box p{margin-bottom:0;color:var(--muted)}
-    .warning-box strong{color:var(--danger)}
+    .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+    @media(max-width:500px){.impact-grid{grid-template-columns:1fr}}
+    .impact-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+    .ic-years{font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+    .ic-val{font-family:var(--font-head);font-size:24px;font-weight:800;color:var(--danger)}
+    .ic-desc{font-size:12px;color:var(--muted);margin-top:4px}
+    .actif-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin:12px 0;display:flex;align-items:center;gap:18px}
+    .actif-icon{font-size:28px;flex-shrink:0}
+    .actif-info{flex:1}
+    .actif-name{font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px}
+    .actif-desc{font-size:13px;color:var(--muted);line-height:1.5}
+    .actif-score{text-align:right;flex-shrink:0}
+    .actif-note{font-family:var(--font-head);font-size:20px;font-weight:800}
+    .note-a{color:var(--accent)}
+    .note-b{color:var(--warn)}
+    .note-c{color:var(--danger)}
+    .actif-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
     .highlight{background:rgba(0,229,160,0.07);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
     .highlight-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--accent);margin-bottom:8px}
     .highlight p{margin-bottom:0;color:var(--muted)}
-    .step{display:flex;gap:14px;align-items:start;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin:10px 0}
-    .step-n{background:var(--accent2);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
-    .step p{margin:0;font-size:14px;color:var(--muted);line-height:1.6}
-    .step p strong{color:var(--text)}
     .tool-cta{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(0,229,160,0.1),rgba(79,142,255,0.08));border:1px solid rgba(0,229,160,0.25);border-radius:16px;padding:24px;margin:36px 0;text-decoration:none;color:inherit;transition:all .25s}
     .tool-cta:hover{border-color:rgba(0,229,160,0.5);transform:translateY(-2px)}
     .tool-cta-icon{font-size:36px;flex-shrink:0}
@@ -84,110 +87,144 @@
   <a href="../index.html" class="logo">Finance<span>IQ</span></a>
   <div class="nav-links">
     <a href="../index.html">Accueil</a>
-    <a href="../index.html#budget">Budget</a>
-    <a href="../chatbot.html">Assistant</a>
     <a href="../blog.html">Blog</a>
+    <a href="../calculateur.html">Crédit</a>
+    <a href="../epargne.html">Épargne</a>
+    <a href="../chatbot.html">Assistant</a>
   </div>
 </nav>
 <div class="page-layout">
 <article>
   <div class="article-hero">
-    <div class="breadcrumb"><a href="../index.html">Accueil</a> › <a href="../blog.html">Blog</a> › Finances freelance</div>
-    <div class="article-tag">💼 FREELANCE</div>
-    <h1 class="article-title">Indépendants & freelances : gérer ses finances autrement</h1>
-    <p class="article-intro">Revenus variables, charges sociales, TVA, épargne renforcée — être freelance change tout à la gestion de l'argent. Le guide complet pour éviter les pièges et optimiser sa situation.</p>
+    <div class="breadcrumb"><a href="../index.html">Accueil</a> › <a href="../blog.html">Blog</a> › Inflation</div>
+    <div class="article-tag">🟡 INFLATION</div>
+    <h1 class="article-title">Inflation : comment protéger son argent efficacement</h1>
+    <p class="article-intro">L'inflation érode silencieusement votre patrimoine, même quand tout semble stable. Les actifs et stratégies qui permettent de préserver — et faire croître — votre pouvoir d'achat.</p>
     <div class="article-meta">
-      <span>📅 Février 2025</span><span>⏱️ 10 min de lecture</span><span>✍️ FinanceIQ</span><span>👁️ Intermédiaire</span>
+      <span>📅 Février 2026</span><span>⏱️ 9 min de lecture</span><span>✍️ FinanceIQ</span><span>👁️ Tous niveaux</span>
     </div>
   </div>
 
   <div class="article-visual">
-    <svg width="460" height="175" viewBox="0 0 460 175">
-      <text x="230" y="30" text-anchor="middle" fill="#4f8eff" font-family="Syne,sans-serif" font-size="14" font-weight="700">Revenu brut freelance : 5 000€/mois</text>
-      <rect x="20" y="45" width="420" height="20" rx="6" fill="rgba(255,255,255,0.05)"/>
-      <rect x="20" y="45" width="170" height="20" rx="6" fill="rgba(255,107,107,0.6)"/>
-      <text x="105" y="60" text-anchor="middle" fill="white" font-family="DM Sans,sans-serif" font-size="10" font-weight="600">Charges sociales ~34% → 1700€</text>
-      <rect x="20" y="75" width="420" height="20" rx="6" fill="rgba(255,255,255,0.05)"/>
-      <rect x="20" y="75" width="80" height="20" rx="6" fill="rgba(245,166,35,0.6)"/>
-      <text x="140" y="90" fill="#f5a623" font-family="DM Sans,sans-serif" font-size="10" font-weight="600">Impôts ~16% → 800€</text>
-      <rect x="20" y="105" width="420" height="20" rx="6" fill="rgba(255,255,255,0.05)"/>
-      <rect x="20" y="105" width="60" height="20" rx="6" fill="rgba(79,142,255,0.6)"/>
-      <text x="120" y="120" fill="#4f8eff" font-family="DM Sans,sans-serif" font-size="10" font-weight="600">Trésorerie ~12% → 600€</text>
-      <rect x="20" y="135" width="420" height="20" rx="6" fill="rgba(255,255,255,0.05)"/>
-      <rect x="20" y="135" width="150" height="20" rx="6" fill="rgba(0,229,160,0.7)"/>
-      <text x="105" y="150" text-anchor="middle" fill="white" font-family="Syne,sans-serif" font-size="10" font-weight="700">Revenu disponible ~38% → 1 900€</text>
+    <svg width="460" height="180" viewBox="0 0 460 180">
+      <text x="40" y="60" fill="white" font-family="Syne,sans-serif" font-size="28" font-weight="800">100€</text>
+      <text x="40" y="82" fill="#7a8aaa" font-family="DM Sans,sans-serif" font-size="12">aujourd'hui</text>
+      <path d="M130 65 L185 90 L240 110 L295 125 L360 140" fill="none" stroke="#ff6b6b" stroke-width="2.5" stroke-dasharray="5 3"/>
+      <circle cx="360" cy="140" r="5" fill="#ff6b6b"/>
+      <text x="368" y="145" fill="#ff6b6b" font-family="Syne,sans-serif" font-size="13" font-weight="700">67€</text>
+      <text x="368" y="163" fill="#7a8aaa" font-family="DM Sans,sans-serif" font-size="10">en 20 ans à 2%/an</text>
+      <text x="230" y="40" text-anchor="middle" fill="#f5a623" font-family="Syne,sans-serif" font-size="12" font-weight="700">INFLATION 2%/AN</text>
+      <text x="230" y="58" text-anchor="middle" fill="#7a8aaa" font-family="DM Sans,sans-serif" font-size="10">Érosion silencieuse du pouvoir d'achat</text>
     </svg>
   </div>
 
   <div class="article-content">
 
-    <h2 id="realite">La réalité du revenu freelance</h2>
-    <p>La première erreur des freelances débutants : confondre le chiffre d'affaires et le revenu disponible. En micro-entreprise à 5 000€/mois de CA, voici ce que vous touchez réellement :</p>
+    <h2 id="impact">L'impact réel de l'inflation sur votre patrimoine</h2>
+    <p>L'inflation agit comme une taxe invisible sur votre épargne. À 2%/an — le taux cible de la BCE, considéré comme "modéré" — voici ce que devient <strong>100 000€ laissés sans rendement</strong> :</p>
 
-    <div class="repartition-box">
-      <h4>💼 Répartition d'un CA de 5 000€/mois (micro-entreprise, services)</h4>
-      <div class="rep-row"><span class="rep-label">Charges sociales (~22%)</span><div class="rep-bar-wrap"><div class="rep-bar" style="width:22%;background:var(--danger)"></div></div><span class="rep-val" style="color:var(--danger)">-1 100€</span></div>
-      <div class="rep-row"><span class="rep-label">Impôt sur le revenu (~15%)</span><div class="rep-bar-wrap"><div class="rep-bar" style="width:15%;background:var(--warn)"></div></div><span class="rep-val" style="color:var(--warn)">-750€</span></div>
-      <div class="rep-row"><span class="rep-label">Trésorerie tampon (10%)</span><div class="rep-bar-wrap"><div class="rep-bar" style="width:10%;background:var(--accent2)"></div></div><span class="rep-val" style="color:var(--accent2)">-500€</span></div>
-      <div class="rep-row"><span class="rep-label">Épargne précaution (10%)</span><div class="rep-bar-wrap"><div class="rep-bar" style="width:10%;background:var(--accent)"></div></div><span class="rep-val" style="color:var(--accent)">-500€</span></div>
-      <div class="rep-row"><span class="rep-label" style="font-weight:700">Revenu disponible</span><div class="rep-bar-wrap"><div class="rep-bar" style="width:43%;background:rgba(255,255,255,0.2)"></div></div><span class="rep-val">2 150€</span></div>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="ic-years">Dans 10 ans</div>
+        <div class="ic-val">82 000€</div>
+        <div class="ic-desc">de pouvoir d'achat réel</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-years">Dans 20 ans</div>
+        <div class="ic-val">67 000€</div>
+        <div class="ic-desc">de pouvoir d'achat réel</div>
+      </div>
+      <div class="impact-card">
+        <div class="ic-years">Dans 30 ans</div>
+        <div class="ic-val">55 000€</div>
+        <div class="ic-desc">de pouvoir d'achat réel</div>
+      </div>
     </div>
 
-    <div class="warning-box">
-      <p><strong>⚠️ Ne dépensez pas votre CA !</strong> Sur 5 000€ de CA, votre revenu disponible réel est d'environ 2 000-2 500€. Beaucoup de freelances dépensent comme s'ils gagnaient 5 000€ et se retrouvent en difficulté lors des régularisations de charges ou d'impôts.</p>
+    <p>Conclusion : <strong>ne rien faire avec son argent, c'est s'appauvrir</strong>. Même un Livret A à 3% avec une inflation à 3% vous laisse à zéro en termes réels. Pour s'enrichir, il faut un rendement supérieur à l'inflation.</p>
+
+    <h2 id="actifs">Les actifs face à l'inflation : ce qui protège vraiment</h2>
+
+    <div class="actif-card">
+      <span class="actif-icon">📊</span>
+      <div class="actif-info">
+        <div class="actif-name">Actions / ETF Monde</div>
+        <div class="actif-desc">Les entreprises répercutent l'inflation sur leurs prix → leurs bénéfices augmentent → cours hausse. Sur 30 ans, les actions ont battu l'inflation de 5-6 points par an en moyenne.</div>
+      </div>
+      <div class="actif-score"><div class="actif-note note-a">A+</div><div class="actif-label">Protection</div></div>
     </div>
 
-    <h2 id="comptes">La règle des 3 comptes séparés</h2>
-    <p>La meilleure organisation financière pour un freelance : <strong>3 comptes bancaires distincts</strong>.</p>
+    <div class="actif-card">
+      <span class="actif-icon">🏠</span>
+      <div class="actif-info">
+        <div class="actif-name">Immobilier</div>
+        <div class="actif-desc">Les loyers sont indexés sur l'IRL (indice de référence des loyers). La valeur des biens tend à suivre l'inflation sur le long terme — mais très inégalement selon les zones.</div>
+      </div>
+      <div class="actif-score"><div class="actif-note note-b">B+</div><div class="actif-label">Protection</div></div>
+    </div>
 
-    <div class="step"><div class="step-n">1</div><p><strong>Compte professionnel :</strong> Tous les encaissements clients arrivent ici. Vous ne payez aucune dépense personnelle depuis ce compte. C'est votre comptabilité de base.</p></div>
-    <div class="step"><div class="step-n">2</div><p><strong>Compte impôts/charges :</strong> Dès qu'une facture est encaissée, virez <strong>40-45% du montant</strong> sur ce compte bloqué. Vous ne touchez pas à cet argent. Il paiera vos charges sociales et impôts quand ils tombent.</p></div>
-    <div class="step"><div class="step-n">3</div><p><strong>Compte personnel :</strong> Voici votre "salaire" mensuel. Versez-vous une somme fixe depuis le compte pro, même les bons mois. La régularité est essentielle pour votre psychologie et votre budget.</p></div>
+    <div class="actif-card">
+      <span class="actif-icon">🥇</span>
+      <div class="actif-info">
+        <div class="actif-name">Or</div>
+        <div class="actif-desc">Valeur refuge historique, mais très volatil à court terme. Pas de rendement (pas de dividendes). Bon pour diversifier, pas pour s'enrichir. Maximum 5-10% d'un portefeuille.</div>
+      </div>
+      <div class="actif-score"><div class="actif-note note-b">B</div><div class="actif-label">Protection</div></div>
+    </div>
+
+    <div class="actif-card">
+      <span class="actif-icon">🏦</span>
+      <div class="actif-info">
+        <div class="actif-name">Livret A / LDDS</div>
+        <div class="actif-desc">Taux révisé pour suivre approximativement l'inflation. Protection partielle, mais insuffisante sur le long terme. Utile pour la liquidité, pas pour s'enrichir.</div>
+      </div>
+      <div class="actif-score"><div class="actif-note note-c">C+</div><div class="actif-label">Protection</div></div>
+    </div>
+
+    <div class="actif-card">
+      <span class="actif-icon">💶</span>
+      <div class="actif-info">
+        <div class="actif-name">Cash / Compte courant</div>
+        <div class="actif-desc">Zéro rendement = perte certaine face à l'inflation. Garder du cash au-delà de 1-2 mois de dépenses courantes est une erreur financière.</div>
+      </div>
+      <div class="actif-score"><div class="actif-note note-c">D</div><div class="actif-label">Protection</div></div>
+    </div>
 
     <div class="ad-block">
       <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Publicité</div>
       <div class="ad-inner"><span style="font-size:13px;color:var(--muted)">336×280</span></div>
     </div>
 
-    <h2 id="epargne">L'épargne de précaution renforcée</h2>
-    <p>En tant que salarié, l'épargne de précaution recommandée est de 3 mois de dépenses. En tant que freelance, visez <strong>6 mois minimum</strong>, idéalement 12 mois. Pourquoi ?</p>
+    <h2 id="strategie">La stratégie pratique anti-inflation</h2>
+    <p>Voici comment organiser son patrimoine pour rester au-dessus de l'inflation à chaque horizon de temps :</p>
     <ul>
-      <li>Pas d'indemnités chômage si vous n'avez plus de clients</li>
-      <li>Les creux d'activité peuvent durer 2-4 mois</li>
-      <li>Les délais de paiement clients (30-60 jours) créent des décalages de trésorerie</li>
-      <li>La maladie ou un accident = revenus à zéro immédiatement</li>
-    </ul>
-
-    <h2 id="retraite">Retraite et protection sociale : le nerf de la guerre</h2>
-    <p>Les indépendants cotisent moins pour la retraite que les salariés. Résultat : une retraite de base souvent inférieure de 30-40%. Il est indispensable de compenser par une épargne retraite privée.</p>
-    <ul>
-      <li><strong>PER individuel :</strong> Déductible du revenu imposable (très avantageux si TMI 30%+). Idéal pour les freelances en bonne santé financière.</li>
-      <li><strong>PEA + ETF :</strong> Pour le long terme, accessible et performant.</li>
-      <li><strong>Madelin :</strong> Pour les TNS (Travailleurs Non-Salariés) — permet aussi de déduire les cotisations prévoyance.</li>
+      <li><strong>Court terme (0-3 ans) :</strong> Livret A + LDDS + LEP si éligible. Objectif : ne pas perdre plus que l'inflation.</li>
+      <li><strong>Moyen terme (3-8 ans) :</strong> Assurance-vie fonds euros + quelques unités de compte. Objectif : inflation + 1-2%.</li>
+      <li><strong>Long terme (8 ans+) :</strong> PEA avec ETF MSCI World. Objectif : inflation + 5-6% sur le long terme. C'est là que se crée la vraie richesse.</li>
     </ul>
 
     <div class="highlight">
-      <div class="highlight-title">💡 Le conseil le plus important</div>
-      <p>Ouvrez un PER ou un PEA dès le premier mois de votre activité, même avec 50€. Le temps est votre meilleur allié, et les retards en matière de retraite des indépendants sont parmi les situations financières les plus difficiles à rattraper.</p>
+      <div class="highlight-title">🎯 La règle fondamentale</div>
+      <p>Votre rendement réel = Rendement nominal − Inflation. Un Livret A à 3% avec une inflation à 2% = +1% réel. Un ETF à 8% avec une inflation à 3% = +5% réel. C'est ce +5% qui construit votre patrimoine réel sur le long terme.</p>
     </div>
 
-    <a href="../index.html#budget" class="tool-cta">
-      <span class="tool-cta-icon">💰</span>
+    <a href="../epargne.html" class="tool-cta">
+      <span class="tool-cta-icon">📈</span>
       <div>
-        <div class="tool-cta-title">Calculez votre revenu net de freelance</div>
-        <div class="tool-cta-desc">Entrez votre CA mensuel dans notre simulateur pour voir votre budget réaliste</div>
+        <div class="tool-cta-title">Simulez avec le paramètre inflation</div>
+        <div class="tool-cta-desc">Notre simulateur affiche votre capital en euros constants, hors inflation</div>
       </div>
       <span class="tool-cta-arrow">→</span>
     </a>
 
     <div class="article-nav">
-      <a href="inflation-proteger-argent.html" class="art-nav-card">
+      <a href="arnaques-financieres.html" class="art-nav-card">
         <div class="art-nav-label">← Article précédent</div>
-        <div class="art-nav-title">Inflation : protéger son argent</div>
+        <div class="art-nav-title">Les arnaques financières</div>
       </a>
-      <a href="fire-retraite-anticipee.html" class="art-nav-card" style="text-align:right">
+      <a href="freelance-finances.html" class="art-nav-card" style="text-align:right">
         <div class="art-nav-label">Article suivant →</div>
-        <div class="art-nav-title">FIRE : retraite avant 50 ans</div>
+        <div class="art-nav-title">Freelances : gérer ses finances</div>
       </a>
     </div>
   </div>
@@ -196,23 +233,29 @@
   <div class="sidebar-card">
     <h4>📋 Dans cet article</h4>
     <ul class="toc-list">
-      <li><a href="#realite"><span class="toc-num">01</span>La réalité du revenu freelance</a></li>
-      <li><a href="#comptes"><span class="toc-num">02</span>La règle des 3 comptes</a></li>
-      <li><a href="#epargne"><span class="toc-num">03</span>Épargne de précaution</a></li>
-      <li><a href="#retraite"><span class="toc-num">04</span>Retraite et protection</a></li>
+      <li><a href="#impact"><span class="toc-num">01</span>L'impact réel</a></li>
+      <li><a href="#actifs"><span class="toc-num">02</span>Les actifs face à l'inflation</a></li>
+      <li><a href="#strategie"><span class="toc-num">03</span>Stratégie pratique</a></li>
     </ul>
   </div>
   <div class="sidebar-card">
     <h4>🛠️ Outils liés</h4>
-    <a href="../index.html#budget" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.15);border-radius:10px;text-decoration:none;color:var(--text);margin-bottom:10px;font-size:13px"><span>💰</span><span>Simulateur de budget</span></a>
-    <a href="../epargne.html" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(79,142,255,0.06);border:1px solid rgba(79,142,255,0.15);border-radius:10px;text-decoration:none;color:var(--text);font-size:13px"><span>📈</span><span>Simulateur d'épargne</span></a>
+    <a href="../epargne.html" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.15);border-radius:10px;text-decoration:none;color:var(--text);margin-bottom:10px;font-size:13px"><span>📈</span><span>Simulateur d'épargne</span></a>
+    <a href="../chatbot.html" style="display:flex;align-items:center;gap:10px;padding:12px;background:rgba(79,142,255,0.06);border:1px solid rgba(79,142,255,0.15);border-radius:10px;text-decoration:none;color:var(--text);font-size:13px"><span>🤖</span><span>Poser une question</span></a>
   </div>
   <div class="ad-block" style="margin:0"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Publicité</div><div class="ad-inner" style="min-height:250px"><span style="font-size:13px;color:var(--muted)">300×250</span></div></div>
 </aside>
 </div>
 <footer>
-  <div class="footer-links"><a href="../index.html">Accueil</a><a href="../blog.html">Blog</a><a href="../epargne.html">Simulateur</a><a href="../chatbot.html">Assistant</a></div>
-  <p>© 2025 FinanceIQ · Article éducatif · Consultez un expert-comptable pour votre situation spécifique</p>
+  <div class="footer-links">
+    <a href="../index.html">Accueil</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../calculateur.html">Calculateur crédit</a>
+    <a href="../chatbot.html">Assistant</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../mentions-legales.html">Mentions légales</a>
+  </div>
+  <p>© 2026 FinanceIQ · Article éducatif · Pas de conseil en investissement</p>
 </footer>
 </body>
 </html>
