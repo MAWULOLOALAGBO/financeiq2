@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
-Sitemap: https://financeiq-topaz.vercel.app/sitemap.xml
+
+# Sitemap
+Sitemap: https://financeiq2.vercel.app/sitemap.xml
+
+# On bloque rien d'important
+Disallow: /admin/
+Disallow: /private/
+Disallow: /test/
