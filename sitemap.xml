@@ -50,6 +50,13 @@
     <priority>0.3</priority>
   </url>
 
+  <url>
+    <loc>https://financeiq2.vercel.app/politique-de-confidentialite.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <!-- Articles du blog -->
   <url>
     <loc>https://financeiq2.vercel.app/articles/regle-50-30-20.html</loc>
