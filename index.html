@@ -201,7 +201,8 @@
 <section class="section" id="outils">
   <div class="section-label">Nos outils</div>
   <h2 class="section-title">Tout ce dont vous avez besoin</h2>
-  <p class="section-sub">Des outils pensés pour être simples, rapides et vraiment utiles au quotidien. Mise à jour avril 2026.</p>  <div class="tools-grid">
+  <p class="section-sub">Des outils pensés pour être simples, rapides et vraiment utiles au quotidien. Mise à jour avril 2026.</p>  
+  <div class="tools-grid">
     <a class="tool-card" href="#budget">
       <span class="tool-icon">💰</span>
       <div class="tool-title">Simulateur de budget</div>
@@ -245,6 +246,86 @@
       <span class="tool-tag">15 ARTICLES</span>
     </a>
   </div>
+
+<!-- ==================== CARTE TAUX ACTUELS ==================== -->
+<div class="taux-card" style="background:var(--card); border:1px solid var(--border); border-radius:20px; padding:32px 28px; margin:40px 0 50px;">
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <span style="font-size:32px;">📈</span>
+      <h3 style="font-family:var(--font-head); font-size:24px; font-weight:700; margin:0;">Taux actuels — Avril 2026</h3>
+    </div>
+    <div style="font-size:13px; color:var(--muted);">Dernière mise à jour : <span id="date-maj"></span></div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:20px;">
+
+    <!-- Livret A -->
+    <div class="taux-item">
+      <div class="taux-label">Livret A</div>
+      <div class="taux-value" id="livret-a-value"></div>
+      <div class="taux-plafond">Plafond : 22 950 €</div>
+      <div class="taux-etat" id="livret-a-etat"></div>
+    </div>
+
+    <!-- LDDS -->
+    <div class="taux-item">
+      <div class="taux-label">LDDS</div>
+      <div class="taux-value" id="ldds-value"></div>
+      <div class="taux-plafond">Plafond : 12 000 €</div>
+      <div class="taux-etat" id="ldds-etat"></div>
+    </div>
+
+    <!-- LEP -->
+    <div class="taux-item">
+      <div class="taux-label">LEP</div>
+      <div class="taux-value" id="lep-value"></div>
+      <div class="taux-plafond">Plafond : 10 000 €</div>
+      <div class="taux-etat" id="lep-etat"></div>
+    </div>
+
+    <!-- Crédit Immobilier -->
+    <div class="taux-item">
+      <div class="taux-label">Crédit Immobilier (20 ans)</div>
+      <div class="taux-value" id="credit-value"></div>
+      <div class="taux-etat" id="credit-etat"></div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.taux-item {
+  background: var(--surface);
+  padding: 20px 22px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.taux-label {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.taux-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.taux-plafond {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.taux-etat {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+</style>
+  
 </section>
 
 <div class="why-section">
@@ -486,6 +567,51 @@ function calculerBudget() {
 }
 
 showQuestion();
+</script>
+
+<script>
+// Chargement des taux depuis le JSON
+async function loadTaux() {
+  try {
+    const response = await fetch('data/taux.json');
+    const taux = await response.json();
+
+    // Date de mise à jour
+    document.getElementById('date-maj').textContent = taux.derniere_mise_a_jour;
+
+    // Livret A
+    document.getElementById('livret-a-value').textContent = taux.livret_a.taux_actuel + '%';
+    document.getElementById('livret-a-etat').innerHTML = getEtatHTML(taux.livret_a.taux_actuel, taux.livret_a.taux_ancien);
+
+    // LDDS
+    document.getElementById('ldds-value').textContent = taux.ldds.taux_actuel + '%';
+    document.getElementById('ldds-etat').innerHTML = getEtatHTML(taux.ldds.taux_actuel, taux.ldds.taux_ancien);
+
+    // LEP
+    document.getElementById('lep-value').textContent = taux.lep.taux_actuel + '%';
+    document.getElementById('lep-etat').innerHTML = getEtatHTML(taux.lep.taux_actuel, taux.lep.taux_ancien);
+
+    // Crédit Immobilier
+    document.getElementById('credit-value').textContent = taux.taux_credit_immo.moyenne_20_ans_actuel + '%';
+    document.getElementById('credit-etat').innerHTML = getEtatHTML(taux.taux_credit_immo.moyenne_20_ans_actuel, taux.taux_credit_immo.moyenne_20_ans_ancien);
+
+  } catch (error) {
+    console.error("Erreur chargement taux :", error);
+  }
+}
+
+function getEtatHTML(actuel, ancien) {
+  if (actuel > ancien) {
+    return `<span style="color:#00e5a0;">↑ En hausse</span>`;
+  } else if (actuel < ancien) {
+    return `<span style="color:#ff6b6b;">↓ En baisse</span>`;
+  } else {
+    return `<span style="color:#7a8aaa;">→ Stable</span>`;
+  }
+}
+
+// Lancer le chargement des taux au démarrage
+window.addEventListener('load', loadTaux);
 </script>
 </body>
 </html>
