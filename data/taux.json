@@ -1,0 +1,43 @@
+{
+  "derniere_mise_a_jour": "2026-04-13",
+  "commentaire": "Mets à jour cette date à chaque changement",
+
+  "livret_a": {
+    "taux_actuel": 1.5,
+    "taux_ancien": 2.4,
+    "plafond": 22950,
+    "prochaine_revision": "2026-08-01"
+  },
+
+  "ldds": {
+    "taux_actuel": 1.5,
+    "taux_ancien": 2.4,
+    "plafond": 12000
+  },
+
+  "lep": {
+    "taux_actuel": 2.5,
+    "taux_ancien": 3.5,
+    "plafond": 10000,
+    "condition": "Revenu fiscal < 22 419 € (seul) ou 44 838 € (couple)"
+  },
+
+  "taux_credit_immo": {
+    "moyenne_20_ans_actuel": 3.26,
+    "moyenne_20_ans_ancien": 3.8,
+    "meilleur_taux_20_ans": 3.0,
+    "date": "2026-04-13"
+  },
+
+  "fonds_euros": {
+    "rendement_2026_actuel": 2.65,
+    "rendement_2025_ancien": 3.2,
+    "prevision_2027": 2.0
+  },
+
+  "inflation": {
+    "taux_annuel_actuel": 1.7,
+    "taux_annuel_ancien": 2.1,
+    "date": "2026-04-13"
+  }
+}
