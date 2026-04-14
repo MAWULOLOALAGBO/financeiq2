@@ -215,7 +215,6 @@ function extractNumber(text) {
   return match ? parseInt(match[0]) : null;
 }
 
-
 // ═══════════════════════════════════
 // CHARGEMENT DES TAUX + FONCTION ÉTAT
 // ═══════════════════════════════════
@@ -732,7 +731,8 @@ function autoResize(el) {
 
 // MESSAGE D'ACCUEIL
 window.addEventListener('load', async () => {
-  await loadTauxData();
+  await loadTauxData();   // ← Cette ligne est obligatoire
+
   setTimeout(() => {
     addMsg('bot', `<p>Bonjour ! 👋 Je suis <strong>FinBot</strong>, votre assistant finance personnel.</p>
       <p>Je peux répondre à vos questions sur :</p>
