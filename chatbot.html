@@ -240,172 +240,163 @@ function getEtatHTML(actuel, ancien) {
 // BASE DE CONNAISSANCES — Version finale optimisée pour SEO + AdSense (Avril 2026)
 // ═══════════════════════════════════════
 const KB = [
-  { 
-    tags:['epargner','epargne','economiser','mettre de cote','economies'], 
-    title:'Comment épargner efficacement ?', 
+  {
+    tags:['epargner','epargne','economiser','mettre de cote','economies'],
+    title:'Comment épargner efficacement ?',
     reponse:`La règle d’or reste la même en 2026 : <strong>payez-vous en premier</strong>. Dès que votre salaire arrive, mettez automatiquement une somme de côté avant de dépenser.<br><br>
     La méthode la plus simple et la plus efficace est la <strong>règle 50/30/20</strong> :<br>
     • 50 % pour les besoins essentiels (loyer, alimentation, transports…)<br>
     • 30 % pour vos envies et loisirs<br>
     • 20 % pour l’épargne et le remboursement de dettes<br><br>
-    Même 50 € par mois à 5 % sur 20 ans permettent d’atteindre plus de 20 000 €. C’est accessible à presque tout le monde.`, 
-    chips:["Où placer mon épargne ?","Combien épargner par mois ?","Qu'est-ce que le Livret A ?"] 
+    Même 50 € par mois à 5 % sur 20 ans permettent d’atteindre plus de 20 000 €. C’est accessible à presque tout le monde.`,
+    chips:["Où placer mon épargne ?","Combien épargner par mois ?","Qu'est-ce que le Livret A ?"]
   },
-  { 
-    tags:['combien epargner','taux epargne','pourcentage epargner'], 
-    title:'Combien épargner par mois ?', 
+  {
+    tags:['combien epargner','taux epargne','pourcentage epargner'],
+    title:'Combien épargner par mois ?',
     reponse:`En 2026, la recommandation courante est d’épargner entre <strong>10 % et 20 %</strong> de vos revenus nets.<br><br>
     • 5 % : un bon début si vous débutez<br>
     • 10-15 % : équilibre confortable pour la plupart des gens<br>
     • 20 % et plus : vous préparez un projet important ou la retraite anticipée<br><br>
-    Je peux vous aider à calculer selon votre situation réelle.`, 
-    chips:['Simuler mon épargne','Comment les intérêts composés fonctionnent ?'], 
-    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Calculez votre capital futur',url:'epargne.html'} 
+    Je peux vous aider à calculer selon votre situation réelle.`,
+    chips:['Simuler mon épargne','Comment les intérêts composés fonctionnent ?'],
+    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Calculez votre capital futur',url:'epargne.html'}
   },
-  { 
-    tags:['livret a','livret','taux livret','plafond livret'], 
-    title:'Tout sur le Livret A en 2026', 
-    reponse:`Le Livret A reste l’outil numéro 1 pour l’épargne de précaution :<br>
-    • Taux net : <strong>2,4 %</strong><br>
-    • Plafond : <strong>22 950 €</strong><br>
-    • Argent disponible immédiatement et garanti par l’État<br><br>
-    Il est parfait pour constituer 3 à 6 mois de dépenses courantes.`, 
-    chips:["Qu'est-ce que le PEA ?","PEA vs assurance-vie ?","Épargne de précaution : combien ?"] 
-  },
-  { 
-    tags:['interet compose','interets composes','capitalisation'], 
-    title:'Comment fonctionnent les intérêts composés ?', 
+  {
+    tags:['interet compose','interets composes','capitalisation'],
+    title:'Comment fonctionnent les intérêts composés ?',
     reponse:`C’est l’un des concepts les plus puissants en finance : les intérêts génèrent eux-mêmes des intérêts.<br><br>
     Exemple concret : 1 000 € placés à 5 % par an deviennent environ 1 629 € après 10 ans et plus de 4 300 € après 30 ans sans rien ajouter.<br><br>
-    Plus vous commencez jeune, plus cet effet est impressionnant.`, 
-    chips:['Simuler ma croissance','Règle des 72 ?'], 
-    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Visualisez la puissance des intérêts composés',url:'epargne.html'} 
+    Plus vous commencez jeune, plus cet effet est impressionnant.`,
+    chips:['Simuler ma croissance','Règle des 72 ?'],
+    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Visualisez la puissance des intérêts composés',url:'epargne.html'}
   },
-  { 
-    tags:['pea','plan epargne actions'], 
-    title:"Qu'est-ce que le PEA ?", 
+  {
+    tags:['pea','plan epargne actions'],
+    title:"Qu'est-ce que le PEA ?",
     reponse:`Le PEA est l’enveloppe fiscale préférée des Français pour investir en actions européennes.<br><br>
     • Plafond : 150 000 €<br>
     • Après 5 ans : exonération d’impôt sur les plus-values (seuls 17,2 % de prélèvements sociaux)<br>
     • Parfait pour acheter des ETF comme le MSCI World<br><br>
-    C’est souvent le premier placement long terme conseillé.`, 
-    chips:["C'est quoi un ETF ?",'PEA vs assurance-vie ?','Comment investir 100€/mois ?'] 
+    C’est souvent le premier placement long terme conseillé.`,
+    chips:["C'est quoi un ETF ?",'PEA vs assurance-vie ?','Comment investir 100€/mois ?']
   },
-  { 
-    tags:['etf','trackers','fonds indiciels','msci world'], 
-    title:"Qu'est-ce qu'un ETF ?", 
+  {
+    tags:['etf','trackers','fonds indiciels','msci world'],
+    title:"Qu'est-ce qu'un ETF ?",
     reponse:`Un ETF est un fonds qui reproduit automatiquement un indice boursier (ex : MSCI World = plus de 1 500 grandes entreprises mondiales).<br><br>
-    Avantages : frais très bas (0,1-0,3 %), diversification immédiate, accessible dès quelques euros via un PEA.`, 
-    chips:["Comment ouvrir un PEA ?",'Risques de la bourse ?'] 
+    Avantages : frais très bas (0,1-0,3 %), diversification immédiate, accessible dès quelques euros via un PEA.`,
+    chips:["Comment ouvrir un PEA ?",'Risques de la bourse ?']
   },
-  { 
-    tags:['assurance vie','av','contrat vie'], 
-    title:'Assurance-vie : comment ça marche ?', 
+  {
+    tags:['assurance vie','av','contrat vie'],
+    title:'Assurance-vie : comment ça marche ?',
     reponse:`L’assurance-vie est un contrat souple qui permet de placer de l’argent sur des fonds euros (sécurisés) ou des unités de compte (plus dynamiques).<br><br>
-    Son gros avantage : fiscalité allégée après 8 ans et transmission facilitée en cas de décès.`, 
-    chips:['PEA vs assurance-vie ?'] 
+    Son gros avantage : fiscalité allégée après 8 ans et transmission facilitée en cas de décès.`,
+    chips:['PEA vs assurance-vie ?']
   },
-  { 
-    tags:['pea assurance vie','comparer pea av','choisir placement'], 
-    title:'PEA ou Assurance-vie ?', 
+  {
+    tags:['pea assurance vie','comparer pea av','choisir placement'],
+    title:'PEA ou Assurance-vie ?',
     reponse:`Le PEA est souvent plus intéressant pour les actions européennes grâce à sa fiscalité après 5 ans.<br>
     L’assurance-vie est plus flexible, surtout pour la succession et les fonds euros sécurisés.<br><br>
-    Beaucoup de personnes utilisent les deux en complément.`, 
-    chips:['Comment investir 100€/mois ?'] 
+    Beaucoup de personnes utilisent les deux en complément.`,
+    chips:['Comment investir 100€/mois ?']
   },
-  { 
-    tags:['investir bourse','commencer investir','100 euros','dca'], 
-    title:'Comment investir régulièrement ?', 
+  {
+    tags:['investir bourse','commencer investir','100 euros','dca'],
+    title:'Comment investir régulièrement ?',
     reponse:`La stratégie la plus simple et la plus efficace est d’investir tous les mois la même somme (DCA), peu importe le cours du marché.<br><br>
-    Exemple : 100 € par mois dans un ETF MSCI World à 7 % sur 25 ans donnent environ 81 000 €.`, 
-    chips:["Qu'est-ce qu'un ETF ?",'Simuler 100€/mois'], 
-    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Calculez le résultat de vos versements',url:'epargne.html'} 
+    Exemple : 100 € par mois dans un ETF MSCI World à 7 % sur 25 ans donnent environ 81 000 €.`,
+    chips:["Qu'est-ce qu'un ETF ?",'Simuler 100€/mois'],
+    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Calculez le résultat de vos versements',url:'epargne.html'}
   },
-  { 
-    tags:['credit immobilier','pret immobilier','emprunt'], 
-    title:'Comment fonctionne un crédit immobilier ?', 
+  {
+    tags:['credit immobilier','pret immobilier','emprunt'],
+    title:'Comment fonctionne un crédit immobilier ?',
     reponse:`Une mensualité comprend le capital, les intérêts et l’assurance. Au début vous remboursez surtout des intérêts, puis de plus en plus de capital.<br><br>
-    Conseil important : négociez toujours l’assurance emprunteur séparément, cela peut représenter jusqu’à 30 % d’économie sur le coût total.`, 
-    chips:['Calculer mes mensualités','Quel apport faut-il ?'], 
-    outil:{icon:'🏦',name:'Calculateur de crédit',desc:'Simulez vos mensualités',url:'calculateur.html'} 
+    Conseil important : négociez toujours l’assurance emprunteur séparément, cela peut représenter jusqu’à 30 % d’économie sur le coût total.`,
+    chips:['Calculer mes mensualités','Quel apport faut-il ?'],
+    outil:{icon:'🏦',name:'Calculateur de crédit',desc:'Simulez vos mensualités',url:'calculateur.html'}
   },
-  // ... (je continue jusqu’à la fin pour que tu aies tout)
-  { 
-    tags:['loyer achat','acheter louer','locataire'], 
-    title:'Vaut-il mieux louer ou acheter ?', 
+  {
+    tags:['loyer achat','acheter louer','locataire'],
+    title:'Vaut-il mieux louer ou acheter ?',
     reponse:`Cela dépend surtout de la durée pendant laquelle vous pensez rester dans le logement et de votre situation personnelle.<br>
-    Notre simulateur calcule le point d’équilibre précis entre louer et acheter selon vos chiffres réels.`, 
-    chips:['Calculer mon seuil','Frais de notaire ?'], 
-    outil:{icon:'🏠',name:'Simulateur Loyer vs Achat',desc:'Trouvez votre seuil de rentabilité',url:'loyer-vs-achat.html'} 
+    Notre simulateur calcule le point d’équilibre précis entre louer et acheter selon vos chiffres réels.`,
+    chips:['Calculer mon seuil','Frais de notaire ?'],
+    outil:{icon:'🏠',name:'Simulateur Loyer vs Achat',desc:'Trouvez votre seuil de rentabilité',url:'loyer-vs-achat.html'}
   },
-  { 
-    tags:['budget','gerer budget','faire budget'], 
-    title:'Comment faire son budget ?', 
+  {
+    tags:['budget','gerer budget','faire budget'],
+    title:'Comment faire son budget ?',
     reponse:`La méthode 50/30/20 reste la plus simple : 50 % besoins, 30 % envies, 20 % épargne/dettes.<br><br>
-    Astuce : automatisez vos virements d’épargne dès le jour de paie.`, 
-    chips:['Simuler mon budget','Réduire ses dépenses'], 
-    outil:{icon:'💰',name:'Simulateur de budget',desc:'Visualisez votre budget',url:'index.html#budget'} 
+    Astuce : automatisez vos virements d’épargne dès le jour de paie.`,
+    chips:['Simuler mon budget','Réduire ses dépenses'],
+    outil:{icon:'💰',name:'Simulateur de budget',desc:'Visualisez votre budget',url:'index.html#budget'}
   },
-  { 
-    tags:['reduire depenses','economiser','moins depenser'], 
-    title:'Comment réduire ses dépenses ?', 
+  {
+    tags:['reduire depenses','economiser','moins depenser'],
+    title:'Comment réduire ses dépenses ?',
     reponse:`Voici 5 actions concrètes qui fonctionnent bien :<br>
     1. Vérifier les abonnements inutilisés<br>
     2. Comparer assurances et énergie chaque année<br>
     3. Faire du batch cooking<br>
     4. Réduire les petits achats impulsifs<br>
-    5. Rembourser en priorité les crédits coûteux`, 
-    chips:['Faire un budget','Rembourser ses dettes ?'] 
+    5. Rembourser en priorité les crédits coûteux`,
+    chips:['Faire un budget','Rembourser ses dettes ?']
   },
-  { 
-    tags:['dettes','rembourser dettes','sortir dettes','credit conso'], 
-    title:'Comment sortir des dettes ?', 
+  {
+    tags:['dettes','rembourser dettes','sortir dettes','credit conso'],
+    title:'Comment sortir des dettes ?',
     reponse:`Deux méthodes populaires :<br>
     • Avalanche : rembourser d’abord le crédit au taux le plus élevé (économique)<br>
     • Boule de neige : rembourser d’abord le plus petit (motivant psychologiquement)<br><br>
-    La première étape est toujours d’arrêter tout nouvel emprunt.`, 
-    chips:['Réduire mes dépenses'] 
+    La première étape est toujours d’arrêter tout nouvel emprunt.`,
+    chips:['Réduire mes dépenses']
   },
-  { 
-    tags:['retraite','preparer retraite','per'], 
-    title:'Comment préparer sa retraite ?', 
+  {
+    tags:['retraite','preparer retraite','per'],
+    title:'Comment préparer sa retraite ?',
     reponse:`Les trois outils les plus utilisés sont le PER (avantage fiscal immédiat), l’assurance-vie (flexible et succession) et le PEA avec ETF (meilleur rendement long terme).<br><br>
-    Plus vous commencez tôt, moins vous aurez besoin de verser chaque mois.`, 
-    chips:['Simuler ma retraite','PEA vs assurance-vie ?'], 
-    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Projetez votre capital retraite',url:'epargne.html'} 
+    Plus vous commencez tôt, moins vous aurez besoin de verser chaque mois.`,
+    chips:['Simuler ma retraite','PEA vs assurance-vie ?'],
+    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Projetez votre capital retraite',url:'epargne.html'}
   },
-  { 
-    tags:['inflation','pouvoir achat'], 
-    title:"Comment l'inflation affecte mon épargne ?", 
+  {
+    tags:['inflation','pouvoir achat'],
+    title:"Comment l'inflation affecte mon épargne ?",
     reponse:`L’inflation réduit silencieusement votre pouvoir d’achat. À 2 % par an, 100 000 € aujourd’hui vaudront environ 82 000 € de pouvoir d’achat dans 10 ans.<br><br>
-    Pour la contrer, il faut placer une partie de son argent dans des actifs qui rapportent plus que l’inflation (ETF, immobilier, etc.).`, 
-    chips:['Comment investir ?','PEA : comment ça marche ?'] 
+    Pour la contrer, il faut placer une partie de son argent dans des actifs qui rapportent plus que l’inflation (ETF, immobilier, etc.).`,
+    chips:['Comment investir ?','PEA : comment ça marche ?']
   },
-  { 
-    tags:['fiscalite','flat tax','impots investissement'], 
-    title:'Quelle fiscalité sur mes placements ?', 
+  {
+    tags:['fiscalite','flat tax','impots investissement'],
+    title:'Quelle fiscalité sur mes placements ?',
     reponse:`La règle générale est la Flat Tax à 30 %. Mais plusieurs enveloppes permettent de réduire fortement cet impôt :<br>
     • Livret A / LDDS : 0 %<br>
     • PEA après 5 ans : seulement 17,2 %<br>
     • Assurance-vie après 8 ans : abattement avantageux<br>
-    • PER : déduction à l’entrée`, 
-    chips:['PEA : avantages fiscaux','Assurance-vie ?'] 
+    • PER : déduction à l’entrée`,
+    chips:['PEA : avantages fiscaux','Assurance-vie ?']
   },
-  { 
-    tags:['scpi','immobilier papier'], 
-    title:"Qu'est-ce qu'une SCPI ?", 
+  {
+    tags:['scpi','immobilier papier'],
+    title:"Qu'est-ce qu'une SCPI ?",
     reponse:`Une SCPI permet d’investir dans l’immobilier locatif sans gérer de biens ni de locataires.<br>
-    Rendement moyen historique : 4 à 6 %. Accessible dès quelques centaines d’euros, mais avec des frais d’entrée et une liquidité limitée.`, 
-    chips:['Comparer les placements'] 
+    Rendement moyen historique : 4 à 6 %. Accessible dès quelques centaines d’euros, mais avec des frais d’entrée et une liquidité limitée.`,
+    chips:['Comparer les placements']
   },
-  { 
-    tags:['diversification','repartir placements'], 
-    title:'Pourquoi diversifier ?', 
+  {
+    tags:['diversification','repartir placements'],
+    title:'Pourquoi diversifier ?',
     reponse:`Diversifier réduit le risque sans forcément baisser le rendement attendu.<br><br>
-    Un seul ETF MSCI World donne accès à plus de 1 500 entreprises dans le monde entier. C’est la façon la plus simple de bien diversifier en 2026.`, 
-    chips:["ETF : comment ça marche ?"] 
+    Un seul ETF MSCI World donne accès à plus de 1 500 entreprises dans le monde entier. C’est la façon la plus simple de bien diversifier en 2026.`,
+    chips:["ETF : comment ça marche ?"]
   },
-    {
+
+  // === ENTRÉES AMÉLIORÉES AVEC JSON (taux dynamiques) ===
+  {
     tags:['livret a','livret','taux livret'],
     title:'Livret A',
     reponse:`Le Livret A est actuellement à <strong>${tauxData.livret_a ? tauxData.livret_a.taux_actuel : 1.5}%</strong> net.<br>
