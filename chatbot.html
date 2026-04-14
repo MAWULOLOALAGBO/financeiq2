@@ -215,6 +215,27 @@ function extractNumber(text) {
   return match ? parseInt(match[0]) : null;
 }
 
+
+// ═══════════════════════════════════
+// CHARGEMENT DES TAUX + FONCTION ÉTAT
+// ═══════════════════════════════════
+let tauxData = {};
+
+async function loadTauxData() {
+  try {
+    const response = await fetch('../data/taux.json');
+    tauxData = await response.json();
+  } catch (error) {
+    console.error("Erreur chargement taux", error);
+  }
+}
+
+function getEtatHTML(actuel, ancien) {
+  if (actuel > ancien) return `<span style="color:#00e5a0;">↑ En hausse</span>`;
+  if (actuel < ancien) return `<span style="color:#ff6b6b;">↓ En baisse</span>`;
+  return `<span style="color:#7a8aaa;">→ Stable</span>`;
+}
+
 // ═══════════════════════════════════════
 // BASE DE CONNAISSANCES — Version finale optimisée pour SEO + AdSense (Avril 2026)
 // ═══════════════════════════════════════
@@ -383,6 +404,40 @@ const KB = [
     reponse:`Diversifier réduit le risque sans forcément baisser le rendement attendu.<br><br>
     Un seul ETF MSCI World donne accès à plus de 1 500 entreprises dans le monde entier. C’est la façon la plus simple de bien diversifier en 2026.`, 
     chips:["ETF : comment ça marche ?"] 
+  },
+    {
+    tags:['livret a','livret','taux livret'],
+    title:'Livret A',
+    reponse:`Le Livret A est actuellement à <strong>${tauxData.livret_a ? tauxData.livret_a.taux_actuel : 1.5}%</strong> net.<br>
+    Plafond : 22 950 €.<br>
+    ${tauxData.livret_a ? getEtatHTML(tauxData.livret_a.taux_actuel, tauxData.livret_a.taux_ancien) : ''}<br><br>
+    C’est l’outil idéal pour votre épargne de précaution (3 à 6 mois de dépenses).`,
+    chips:["Où placer mon épargne ?","Combien épargner par mois ?","Qu'est-ce que le PEA ?"]
+  },
+  {
+    tags:['ldds'],
+    title:'LDDS',
+    reponse:`Le LDDS est à <strong>${tauxData.ldds ? tauxData.ldds.taux_actuel : 1.5}%</strong> net.<br>
+    Plafond : 12 000 €.<br>
+    ${tauxData.ldds ? getEtatHTML(tauxData.ldds.taux_actuel, tauxData.ldds.taux_ancien) : ''}`,
+    chips:["Livret A vs LDDS ?"]
+  },
+  {
+    tags:['lep'],
+    title:'LEP',
+    reponse:`Le LEP est à <strong>${tauxData.lep ? tauxData.lep.taux_actuel : 2.5}%</strong>.<br>
+    Plafond : 10 000 €.<br>
+    ${tauxData.lep ? getEtatHTML(tauxData.lep.taux_actuel, tauxData.lep.taux_ancien) : ''}<br><br>
+    Accessible sous conditions de revenus.`,
+    chips:["Livret A vs LEP ?"]
+  },
+  {
+    tags:['credit immobilier','taux credit'],
+    title:'Taux crédit immobilier',
+    reponse:`Le taux moyen pour un crédit sur 20 ans est de <strong>${tauxData.taux_credit_immo ? tauxData.taux_credit_immo.moyenne_20_ans_actuel : 3.26}%</strong>.<br>
+    ${tauxData.taux_credit_immo ? getEtatHTML(tauxData.taux_credit_immo.moyenne_20_ans_actuel, tauxData.taux_credit_immo.moyenne_20_ans_ancien) : ''}<br><br>
+    Meilleur taux observé : environ ${tauxData.taux_credit_immo ? tauxData.taux_credit_immo.meilleur_taux_20_ans : 3.0}%.`,
+    chips:['Calculer mes mensualités']
   }
 ];
   
@@ -685,18 +740,17 @@ function autoResize(el) {
 }
 
 // MESSAGE D'ACCUEIL
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
+  await loadTauxData();
   setTimeout(() => {
     addMsg('bot', `<p>Bonjour ! 👋 Je suis <strong>FinBot</strong>, votre assistant finance personnel.</p>
       <p>Je peux répondre à vos questions sur :</p>
       <p>💰 Épargne & budget · 📊 Investissement & PEA · 🏠 Crédit & immobilier · 📈 Retraite</p>
-      <p>Je peux aussi <strong>calculer personnellement</strong> selon votre revenu. Par quoi on commence ?</p>
+      <p>Les taux que je donne sont à jour au ${tauxData.derniere_mise_a_jour || '13 avril 2026'}.</p>
       <div class="chips">
         <button class="chip" onclick="askTopic('Comment épargner efficacement chaque mois ?')">💰 Épargner</button>
         <button class="chip" onclick="askTopic('Qu\\'est-ce que le PEA ?')">📊 PEA</button>
         <button class="chip" onclick="askTopic('Comment faire son budget ?')">📋 Budget</button>
-        <button class="chip" onclick="askTopic('Vaut-il mieux louer ou acheter ?')">🏠 Louer/Acheter</button>
-        <button class="chip" onclick="askTopic('Comment préparer sa retraite ?')">🏖️ Retraite</button>
       </div>`);
   }, 400);
 });
