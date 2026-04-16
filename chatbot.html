@@ -732,18 +732,25 @@ function autoResize(el) {
 }
 
 // MESSAGE D'ACCUEIL
+// MESSAGE D'ACCUEIL
 window.addEventListener('load', async () => {
-  await loadTauxData();   // ← Cette ligne est importante
+  await loadTauxData();
 
   setTimeout(() => {
-    addMsg('bot', `<p>Bonjour ! 👋 Je suis <strong>FinBot</strong>, votre assistant finance personnel.</p>
-      <p>Je peux répondre à vos questions sur :</p>
-      <p>💰 Épargne & budget · 📊 Investissement & PEA · 🏠 Crédit & immobilier · 📈 Retraite</p>
-      <p>Les taux que je donne sont à jour au ${tauxData.derniere_mise_a_jour || '13 avril 2026'}.</p>
+    addMsg('bot', `<p>Bonjour ! 👋 Je suis <strong>FinBot</strong>, ton assistant finance personnel gratuit.</p>
+      <p>Je peux t’aider sur :</p>
+      <p>💰 Budget & épargne · 📊 PEA, ETF, assurance-vie · 🏠 Crédit & immobilier · 📈 Retraite & FIRE</p>
+      
+      <p>Les taux que je donne sont à jour au <strong>${tauxData.derniere_mise_a_jour || '13 avril 2026'}</strong>.</p>
+      
+      <p>Par quoi veux-tu commencer ?</p>
+      
       <div class="chips">
-        <button class="chip" onclick="askTopic('Comment épargner efficacement chaque mois ?')">💰 Épargner</button>
-        <button class="chip" onclick="askTopic('Qu\\'est-ce que le PEA ?')">📊 PEA</button>
-        <button class="chip" onclick="askTopic('Comment faire son budget ?')">📋 Budget</button>
+        <button class="chip" onclick="askTopic('Comment épargner efficacement chaque mois ?')">💰 Épargner efficacement</button>
+        <button class="chip" onclick="askTopic('Qu\\'est-ce que le PEA en 2026 ?')">📊 Le PEA</button>
+        <button class="chip" onclick="askTopic('Faut-il louer ou acheter ?')">🏠 Louer ou acheter ?</button>
+        <button class="chip" onclick="askTopic('Comment faire son budget ?')">📋 Faire son budget</button>
+        <button class="chip" onclick="askTopic('Quel est le meilleur livret en ce moment ?')">📈 Meilleurs livrets</button>
       </div>`);
   }, 400);
 });
