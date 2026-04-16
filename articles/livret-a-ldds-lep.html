@@ -255,7 +255,8 @@
   <div class="ad-block" style="margin:0"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Publicité</div><div class="ad-inner" style="min-height:250px"><span style="font-size:13px;color:var(--muted)">300×250</span></div></div>
 </aside>
 </div>
-<footer>
+
+ <footer>
   <div class="footer-links">
     <a href="../index.html">Accueil</a>
     <a href="../blog.html">Blog</a>
@@ -265,11 +266,38 @@
     <a href="../mentions-legales.html">Mentions légales</a>
     <a href="../politique-de-confidentialite.html">Confidentialité</a>
   </div>
-  <p>© 2026 FinanceIQ · Article éducatif · Taux susceptibles d'évoluer</p>
-  <div style="margin:40px 0 20px; padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:12px; font-size:13px; color:var(--muted); text-align:center;">
-  📅 <strong>Dernière mise à jour :</strong> Avril 2026
+  
+  <p id="footer-copyright">© 2026 FinanceIQ · Article éducatif · Taux susceptibles d'évoluer</p>
+  
+  <div id="footer-update" style="margin:30px 0 20px; padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:12px; font-size:13px; color:var(--muted); text-align:center;">
+    Chargement de la date...
   </div>
 </footer>
+
+<!-- Script pour charger le config.json dans le footer -->
+<script>
+async function loadConfigForFooter() {
+  try {
+    const res = await fetch('../data/config.json');
+    const config = await res.json();
+
+    // Mise à jour du copyright
+    document.getElementById('footer-copyright').innerHTML = 
+      `© ${config.annee_copyright} ${config.site_name} · Article éducatif · Taux susceptibles d'évoluer`;
+
+    // Mise à jour de la dernière mise à jour
+    document.getElementById('footer-update').innerHTML = 
+      `📅 <strong>Dernière mise à jour :</strong> ${config.derniere_mise_a_jour}`;
+
+  } catch(e) {
+    console.log("Impossible de charger config.json");
+    document.getElementById('footer-update').innerHTML = 
+      `📅 <strong>Dernière mise à jour :</strong> Avril 2026`;
+  }
+}
+loadConfigForFooter();
+</script> 
+  
 <!-- Script pour afficher les taux dynamiques -->
 <script>
 async function loadTauxForArticle() {
