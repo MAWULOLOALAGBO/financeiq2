@@ -243,12 +243,12 @@ const KB = [
   {
     tags:['epargner','epargne','economiser','mettre de cote','economies'],
     title:'Comment épargner efficacement ?',
-    reponse:`La règle d’or reste la même en 2026 : <strong>payez-vous en premier</strong>. Dès que votre salaire arrive, mettez automatiquement une somme de côté avant de dépenser.<br><br>
-    La méthode la plus simple et la plus efficace est la <strong>règle 50/30/20</strong> :<br>
-    • 50 % pour les besoins essentiels (loyer, alimentation, transports…)<br>
+    reponse:`La règle d’or reste la même en 2026 : <strong>payez-vous en premier</strong>. Dès que votre salaire arrive, virez automatiquement une somme fixe vers un compte épargne avant de dépenser le reste.<br><br>
+    La méthode la plus simple et la plus utilisée est la <strong>règle 50/30/20</strong> :<br>
+    • 50 % pour les besoins essentiels (loyer, courses, transports, factures…)<br>
     • 30 % pour vos envies et loisirs<br>
     • 20 % pour l’épargne et le remboursement de dettes<br><br>
-    Même 50 € par mois à 5 % sur 20 ans permettent d’atteindre plus de 20 000 €. C’est accessible à presque tout le monde.`,
+    Même avec un petit budget, commencer par 50 € par mois à 5 % sur 20 ans permet d’atteindre plus de 20 000 €. C’est l’une des meilleures habitudes à prendre tôt.`,
     chips:["Où placer mon épargne ?","Combien épargner par mois ?","Qu'est-ce que le Livret A ?"]
   },
   {
@@ -257,7 +257,7 @@ const KB = [
     reponse:`En 2026, la recommandation courante est d’épargner entre <strong>10 % et 20 %</strong> de vos revenus nets.<br><br>
     • 5 % : un bon début si vous débutez<br>
     • 10-15 % : équilibre confortable pour la plupart des gens<br>
-    • 20 % et plus : vous préparez un projet important ou la retraite anticipée<br><br>
+    • 20 % et plus : vous êtes sur la voie du FIRE ou d’un gros projet<br><br>
     Je peux vous aider à calculer un montant personnalisé selon votre situation réelle.`,
     chips:['Simuler mon épargne','Comment les intérêts composés fonctionnent ?'],
     outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Calculez votre capital futur',url:'epargne.html'}
@@ -267,7 +267,7 @@ const KB = [
     title:'Comment fonctionnent les intérêts composés ?',
     reponse:`C’est l’un des concepts les plus puissants en finance : les intérêts génèrent eux-mêmes des intérêts.<br><br>
     Exemple concret : 1 000 € placés à 5 % par an deviennent environ 1 629 € après 10 ans et plus de 4 300 € après 30 ans sans rien ajouter.<br><br>
-    Plus vous commencez jeune, plus cet effet est impressionnant.`,
+    Plus vous commencez jeune, plus cet effet est impressionnant. C’est la clé pour faire fructifier votre argent sur le long terme.`,
     chips:['Simuler ma croissance','Règle des 72 ?'],
     outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Visualisez la puissance des intérêts composés',url:'epargne.html'}
   },
@@ -399,18 +399,19 @@ const KB = [
   {
     tags:['livret a','livret','taux livret'],
     title:'Livret A',
-    reponse:`Le Livret A est actuellement à <strong>${tauxData.livret_a ? tauxData.livret_a.taux_actuel : 1.5}%</strong> net.<br>
+    reponse:`Le Livret A est actuellement à <strong>${tauxData.livret_a ? tauxData.livret_a.taux_actuel : 1.5}%</strong> net d’impôt.<br>
     Plafond : 22 950 €.<br>
     ${tauxData.livret_a ? getEtatHTML(tauxData.livret_a.taux_actuel, tauxData.livret_a.taux_ancien) : ''}<br><br>
-    C’est l’outil idéal pour votre épargne de précaution (3 à 6 mois de dépenses).`,
+    C’est l’outil idéal pour votre épargne de précaution : argent disponible à tout moment et garanti par l’État. Idéal pour constituer 3 à 6 mois de dépenses courantes.`,
     chips:["Où placer mon épargne ?","Combien épargner par mois ?","Qu'est-ce que le PEA ?"]
   },
   {
     tags:['ldds'],
     title:'LDDS',
-    reponse:`Le LDDS est à <strong>${tauxData.ldds ? tauxData.ldds.taux_actuel : 1.5}%</strong> net.<br>
+    reponse:`Le LDDS est à <strong>${tauxData.ldds ? tauxData.ldds.taux_actuel : 1.5}%</strong> net d’impôt.<br>
     Plafond : 12 000 €.<br>
-    ${tauxData.ldds ? getEtatHTML(tauxData.ldds.taux_actuel, tauxData.ldds.taux_ancien) : ''}`,
+    ${tauxData.ldds ? getEtatHTML(tauxData.ldds.taux_actuel, tauxData.ldds.taux_ancien) : ''}<br><br>
+    Il fonctionne exactement comme le Livret A et permet de compléter votre épargne de sécurité.`,
     chips:["Livret A vs LDDS ?"]
   },
   {
@@ -419,7 +420,7 @@ const KB = [
     reponse:`Le LEP est à <strong>${tauxData.lep ? tauxData.lep.taux_actuel : 2.5}%</strong>.<br>
     Plafond : 10 000 €.<br>
     ${tauxData.lep ? getEtatHTML(tauxData.lep.taux_actuel, tauxData.lep.taux_ancien) : ''}<br><br>
-    Accessible sous conditions de revenus.`,
+    C’est actuellement le livret le plus rentable, mais il est réservé aux personnes ayant des revenus modestes.`,
     chips:["Livret A vs LEP ?"]
   },
   {
@@ -427,7 +428,7 @@ const KB = [
     title:'Taux crédit immobilier',
     reponse:`Le taux moyen pour un crédit sur 20 ans est de <strong>${tauxData.taux_credit_immo ? tauxData.taux_credit_immo.moyenne_20_ans_actuel : 3.26}%</strong>.<br>
     ${tauxData.taux_credit_immo ? getEtatHTML(tauxData.taux_credit_immo.moyenne_20_ans_actuel, tauxData.taux_credit_immo.moyenne_20_ans_ancien) : ''}<br><br>
-    Meilleur taux observé : environ ${tauxData.taux_credit_immo ? tauxData.taux_credit_immo.meilleur_taux_20_ans : 3.0}%.`,
+    Meilleur taux observé : environ ${tauxData.taux_credit_immo ? tauxData.taux_credit_immo.meilleur_taux_20_ans : 3.0}%. Négociez toujours l’assurance emprunteur séparément pour faire des économies importantes.`,
     chips:['Calculer mes mensualités']
   }
 ];
