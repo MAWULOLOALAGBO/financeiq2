@@ -242,25 +242,25 @@ function getEtatHTML(actuel, ancien) {
 const KB = [
   {
     tags:['epargner','epargne','economiser','mettre de cote','economies'],
-    title:'Comment épargner efficacement ?',
-    reponse:`La règle d’or reste la même en 2026 : <strong>payez-vous en premier</strong>. Dès que votre salaire arrive, virez automatiquement une somme fixe vers un compte épargne avant de dépenser le reste.<br><br>
-    La méthode la plus simple et la plus utilisée est la <strong>règle 50/30/20</strong> :<br>
-    • 50 % pour les besoins essentiels (loyer, courses, transports, factures…)<br>
-    • 30 % pour vos envies et loisirs<br>
-    • 20 % pour l’épargne et le remboursement de dettes<br><br>
-    Même avec un petit budget, commencer par 50 € par mois à 5 % sur 20 ans permet d’atteindre plus de 20 000 €. C’est l’une des meilleures habitudes à prendre tôt.`,
-    chips:["Où placer mon épargne ?","Combien épargner par mois ?","Qu'est-ce que le Livret A ?"]
+    title:'Comment épargner efficacement en 2026 ?',
+    reponse:`La règle d’or reste la même : <strong>payez-vous en premier</strong>. Dès réception de votre salaire, automatisez un virement vers un compte épargne.<br><br>
+    Utilisez la <strong>règle 50/30/20</strong> :<br>
+    • <strong>50 %</strong> Besoins essentiels (loyer, courses, transports)<br>
+    • <strong>30 %</strong> Envies et loisirs<br>
+    • <strong>20 %</strong> Épargne + remboursement de dettes<br><br>
+    Exemple concret : avec 2 000 € nets, épargnez 400 €/mois. À 5 % sur 20 ans, cela fait plus de 160 000 € grâce aux intérêts composés.`,
+    chips:["Où placer mon épargne ?","Combien épargner par mois ?","Règle 50/30/20"]
   },
   {
     tags:['combien epargner','taux epargne','pourcentage epargner'],
-    title:'Combien épargner par mois ?',
-    reponse:`En 2026, la recommandation courante est d’épargner entre <strong>10 % et 20 %</strong> de vos revenus nets.<br><br>
-    • 5 % : un bon début si vous débutez<br>
-    • 10-15 % : équilibre confortable pour la plupart des gens<br>
-    • 20 % et plus : vous êtes sur la voie du FIRE ou d’un gros projet<br><br>
-    Je peux vous aider à calculer un montant personnalisé selon votre situation réelle.`,
-    chips:['Simuler mon épargne','Comment les intérêts composés fonctionnent ?'],
-    outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Calculez votre capital futur',url:'epargne.html'}
+    title:'Combien faut-il épargner par mois ?',
+    reponse:`En 2026, la règle générale est d’épargner entre <strong>10 % et 20 %</strong> de vos revenus nets.<br><br>
+    • <strong>5 %</strong> → bon début si vous commencez<br>
+    • <strong>10-15 %</strong> → équilibre confortable pour la plupart<br>
+    • <strong>20 % et plus</strong> → préparation retraite anticipée (FIRE) ou achat immobilier<br><br>
+    Avec 1 800 € nets, cela représente 180 à 360 € par mois. Je peux simuler exactement pour vous.`,
+    chips:['Simuler mon épargne','Intérêts composés','Règle 50/30/20'],
+    outil:{icon:'📈',name:"Simulateur d'épargne",link:"../epargne.html"}
   },
   {
     tags:['interet compose','interets composes','capitalisation'],
@@ -273,13 +273,13 @@ const KB = [
   },
   {
     tags:['pea','plan epargne actions'],
-    title:"Qu'est-ce que le PEA ?",
-    reponse:`Le PEA est l’enveloppe fiscale préférée des Français pour investir en actions européennes.<br><br>
-    • Plafond : 150 000 €<br>
-    • Après 5 ans : exonération d’impôt sur les plus-values (seuls 17,2 % de prélèvements sociaux)<br>
-    • Parfait pour acheter des ETF comme le MSCI World<br><br>
-    C’est souvent le premier placement long terme conseillé.`,
-    chips:["C'est quoi un ETF ?",'PEA vs assurance-vie ?','Comment investir 100€/mois ?']
+    title:'Qu\'est-ce que le PEA en 2026 ?',
+    reponse:`Le <strong>PEA (Plan d’Épargne en Actions)</strong> est l’enveloppe fiscale la plus avantageuse pour investir en actions européennes.<br><br>
+    • Exonération totale d’impôt sur les plus-values et dividendes après 5 ans<br>
+    • Plafond : <strong>150 000 €</strong><br>
+    • Idéal pour un horizon long terme (retraite, projet important)<br><br>
+    En 2026, il reste l’un des meilleurs outils pour faire fructifier son argent sans payer d’impôt sur les gains (sauf prélèvements sociaux 17,2 %).`,
+    chips:["PEA vs assurance-vie ?","Comment ouvrir un PEA ?","ETF MSCI World"]
   },
   {
     tags:['etf','trackers','fonds indiciels','msci world'],
@@ -328,13 +328,17 @@ const KB = [
     outil:{icon:'🏠',name:'Simulateur Loyer vs Achat',desc:'Trouvez votre seuil de rentabilité',url:'loyer-vs-achat.html'}
   },
   {
-    tags:['budget','gerer budget','faire budget'],
-    title:'Comment faire son budget ?',
-    reponse:`La méthode 50/30/20 reste la plus simple : 50 % besoins, 30 % envies, 20 % épargne/dettes.<br><br>
-    Astuce : automatisez vos virements d’épargne dès le jour de paie.`,
-    chips:['Simuler mon budget','Réduire ses dépenses'],
-    outil:{icon:'💰',name:'Simulateur de budget',desc:'Visualisez votre budget',url:'index.html#budget'}
+    tags:['regle 50 30 20','50/30/20','budget','methode budget','gerer budget'],
+    title:'La règle 50/30/20 expliquée simplement',
+    reponse:`La <strong>règle 50/30/20</strong> est la méthode de budgétisation la plus simple et la plus efficace :<br><br>
+    • <strong>50 %</strong> → Besoins essentiels (loyer, alimentation, transports, factures)<br>
+    • <strong>30 %</strong> → Envies et loisirs (restaurants, sorties, shopping)<br>
+    • <strong>20 %</strong> → Épargne + remboursement de dettes<br><br>
+    Exemple avec 2 000 € nets : 1 000 € besoins + 600 € envies + 400 € épargne.<br>
+    C’est un excellent point de départ pour reprendre le contrôle de ses finances.`,
+    chips:["Exemple avec mon salaire","Simulateur de budget","Combien épargner par mois ?"]
   },
+  
   {
     tags:['reduire depenses','economiser','moins depenser'],
     title:'Comment réduire ses dépenses ?',
@@ -388,11 +392,14 @@ const KB = [
     chips:['Comparer les placements']
   },
   {
-    tags:['diversification','repartir placements'],
-    title:'Pourquoi diversifier ?',
-    reponse:`Diversifier réduit le risque sans forcément baisser le rendement attendu.<br><br>
-    Un seul ETF MSCI World donne accès à plus de 1 500 entreprises dans le monde entier. C’est la façon la plus simple de bien diversifier en 2026.`,
-    chips:["ETF : comment ça marche ?"]
+    tags:['ou placer epargne','diversification','ou mettre mon argent','repartir son argent'],
+    title:'Où placer mon épargne en 2026 ?',
+    reponse:`Voici la stratégie simple et efficace en 2026 :<br><br>
+    • <strong>Épargne de précaution (3 à 6 mois de dépenses)</strong> → Livret A + LDDS (liquide et garanti)<br>
+    • <strong>Moyen terme (2 à 8 ans)</strong> → Assurance-vie en fonds euros ou unités de compte<br>
+    • <strong>Long terme (retraite, projet important)</strong> → PEA + ETF MSCI World<br><br>
+    L’idée clé : ne jamais tout mettre au même endroit. Diversifiez selon votre horizon et votre tolérance au risque.`,
+    chips:["Livret A, LDDS, LEP","PEA vs assurance-vie","Simulateur d'épargne"]
   },
 
   // === ENTRÉES SUR LES TAUX (dynamiques avec JSON) ===
