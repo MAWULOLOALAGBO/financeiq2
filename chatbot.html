@@ -238,6 +238,7 @@ function getEtatHTML(actuel, ancien) {
 // ═══════════════════════════════════════
 // BASE DE CONNAISSANCES — Version finale optimisée pour SEO + AdSense (Avril 2026)
 // ═══════════════════════════════════════
+
 const KB = [
   {
     tags:['epargner','epargne','economiser','mettre de cote','economies'],
@@ -257,7 +258,7 @@ const KB = [
     • 5 % : un bon début si vous débutez<br>
     • 10-15 % : équilibre confortable pour la plupart des gens<br>
     • 20 % et plus : vous préparez un projet important ou la retraite anticipée<br><br>
-    Je peux vous aider à calculer selon votre situation réelle.`,
+    Je peux vous aider à calculer un montant personnalisé selon votre situation réelle.`,
     chips:['Simuler mon épargne','Comment les intérêts composés fonctionnent ?'],
     outil:{icon:'📈',name:"Simulateur d'épargne",desc:'Calculez votre capital futur',url:'epargne.html'}
   },
@@ -394,7 +395,7 @@ const KB = [
     chips:["ETF : comment ça marche ?"]
   },
 
-  // === ENTRÉES AMÉLIORÉES AVEC JSON (taux dynamiques) ===
+  // === ENTRÉES SUR LES TAUX (dynamiques avec JSON) ===
   {
     tags:['livret a','livret','taux livret'],
     title:'Livret A',
@@ -731,7 +732,7 @@ function autoResize(el) {
 
 // MESSAGE D'ACCUEIL
 window.addEventListener('load', async () => {
-  await loadTauxData();   // ← Cette ligne est obligatoire
+  await loadTauxData();   // ← Cette ligne est importante
 
   setTimeout(() => {
     addMsg('bot', `<p>Bonjour ! 👋 Je suis <strong>FinBot</strong>, votre assistant finance personnel.</p>
