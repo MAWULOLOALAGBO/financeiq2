@@ -79,17 +79,42 @@
 
 <footer>
   <div class="footer-links">
-    <a href="blog.html">Blog</a>
-    <a href="calculateur.html">Calculateur crédit</a>
-    <a href="loyer-vs-achat.html">Loyer vs Achat</a>
-    <a href="contact.html">Contact</a>
-    <a href="mentions-legales.html">Mentions légales</a>
-    <a href="politique-de-confidentialite.html">Confidentialité</a>
+    <a href="../index.html">Accueil</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../calculateur.html">Calculateur crédit</a>
+    <a href="../chatbot.html">Assistant</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../mentions-legales.html">Mentions légales</a>
+    <a href="../politique-de-confidentialite.html">Confidentialité</a>
   </div>
-  <p>© 2026 FinanceIQ · Tous droits réservés · Outil éducatif, ne constitue pas un conseil financier</p>
-  <div style="margin:40px 0 30px; padding:16px 24px; background:var(--surface); border:1px solid var(--border); border-radius:12px; font-size:13px; color:var(--muted); text-align:center;">
-      📅 <strong>Dernière mise à jour :</strong> Avril 2026
+  
+  <p id="footer-copyright">© 2026 FinanceIQ · Article éducatif · En cas d'arnaque, contactez signal-arnaques.fr</p>
+  
+  <div id="footer-update" style="margin:30px 0 20px; padding:16px 20px; background:var(--surface); border:1px solid var(--border); border-radius:12px; font-size:13px; color:var(--muted); text-align:center;">
+    Chargement de la date...
   </div>
 </footer>
+
+<!-- Script config.json pour le footer -->
+<script>
+async function loadConfigForFooter() {
+  try {
+    const res = await fetch('../../data/config.json');
+    const config = await res.json();
+
+    document.getElementById('footer-copyright').innerHTML = 
+      `© ${config.annee_copyright} ${config.site_name} · Article éducatif · En cas d'arnaque, contactez signal-arnaques.fr`;
+
+    document.getElementById('footer-update').innerHTML = 
+      `📅 <strong>Dernière mise à jour :</strong> ${config.derniere_mise_a_jour}`;
+
+  } catch(e) {
+    console.log("❌ Config footer non chargé");
+    document.getElementById('footer-update').innerHTML = 
+      `📅 <strong>Dernière mise à jour :</strong> Mai 2026`;
+  }
+}
+loadConfigForFooter();
+</script>
 </body>
 </html>
